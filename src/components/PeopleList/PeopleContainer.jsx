@@ -30,24 +30,10 @@ const PeopleContainer = () => {
         fetchProjectById().then((users) =>{
             if(users) {
                 const usersList = users.users
-                console.log(usersList[0])
-                fetchUserInteraction(usersList[0].id)
-                    .then( user => console.log(user));
-
                 setPeople(usersList)
             }
         })
-        
-        
-    
     }, []);
-
-    // useEffect(() => {
-    //     console.log(people[0].id)
-    //     fetchUserInteraction(people[0].id)
-    //         .then( user => console.log(user));
-        
-    // }, [people])
 
     return ( 
         <div className="people-container">

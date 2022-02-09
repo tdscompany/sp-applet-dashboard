@@ -4,10 +4,8 @@ import "./index.css";
 import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
 import ChartJourney2 from '../ChartsJourney/ChartJourney2.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
-import {fetchMapById, fetchMapStatistics , 
-    fetchProjectById, getCommentsGroupedByQuestionReport,
-    getAllDivergencePointsByMapId
-} from "../../services/requestFunctions";
+import MostInfluent from '../MostInfluent/MostInfluent';
+import { fetchMapById, fetchMapStatistics, fetchProjectById, getCommentsGroupedByQuestionReport, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
 import { AuthContext } from "../providers/auth";
 
 import {BsFillPersonFill} from 'react-icons/bs';
@@ -33,6 +31,7 @@ function Projetos() {
     const [project, setProject] = useState({});
     const [projectStatistics, setProjectStatistics] = useState({});
     const [projectUsers, setProjectUsers] = useState({});
+
 
     const newDate = new Date(project.created_at);
 
@@ -86,6 +85,7 @@ function Projetos() {
         getCommentsGroupedByQuestionReport().then((response) => {
             console.log('Resposta de getCommentsGroupedByQuestionReport' , response)
         })
+
 }, [] );
 
   
@@ -142,7 +142,8 @@ function Projetos() {
                         <PeopleContainer props={projectUsers}/>
                         <h3 className="partTitle">Participantes mais influentes</h3>
                         {/* MOACKADINHO DO SUCESSO */}
-                        <div className="theBestWrapper">
+                        <MostInfluent />
+                        {/* <div className="theBestWrapper">
                             <div className="theBest">
                             <div className="ball"></div>
                                 <div className="person-txt-container">
@@ -161,7 +162,7 @@ function Projetos() {
                                     <p> Rafael </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="bestInteractionContainer">
                             <h3 className="bICTitle">Comentários com mais interações</h3>
                             <p className="bICText">comentário bem longo que foi escrito na strateegia,
