@@ -1,0 +1,112 @@
+.container {
+    display:flex;
+    margin-top: 8vh;
+}
+
+.imgWellcome {
+    margin-left: 7vw;
+    height:11vh;
+}
+
+.wellcome {
+    justify-content: flex-start;
+    position: relative;
+    font-weight: 400;
+    color:#474143 ;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    
+}
+
+.wellcome h3 {
+    font-size: 1.5rem;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.wellcome p {
+    font-size: 1rem;
+}
+
+.ola{
+    margin-right: 5px;
+    color: black;
+}
+
+
+
+@media screen and (max-width: 719px) {
+    .linha {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+    .container {
+        display:flex;        
+        align-items: center;
+        justify-content: center;
+        margin-top: 8%;
+        width: 100%;
+    }
+    
+    .wellcome {
+        position: relative;
+        font-weight: 400;
+        color:black ;
+        
+    }
+    
+    .wellcome h3 {
+        font-size: 30px;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+    }
+    
+    .ola{
+       
+        color: black;
+    }
+    
+    
+  
+}
+
+@media screen and (max-width: 460px) {
+    .wellcome {
+        position: relative;
+        font-weight: 400;
+        color:black ;
+        margin-left: 10%;
+        
+    }
+    
+    .wellcome h3 {
+        font-size: 2rem;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+    }
+    
+    .wellcome p {
+        width: 70%;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #2322225E;
+
+    }
+
+    .ola{
+       
+        color: black;
+    }
+    
+    .imgWellcome {
+        height: 0;
+        width: 0;
+    }
+  
+}
