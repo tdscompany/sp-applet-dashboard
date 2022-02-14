@@ -5,38 +5,39 @@ import './MostInfluent.css'
 
 const MostInfluent = () => {
     const [users, setUsers] = React.useState([]);
-    const [totalAgreements, setTotalAgreements] = React.useState([]);
-    const [totalReplies, setTotalReplies] = React.useState([]);
-    const [totalAnsweredQuestions, setTotalAnsweredQuestions] = React.useState([]);
-    const [mostInfluentUser, setMostInfluentUser] = React.useState({});
+    const [usersMean, setUsersMean] = React.useState([]);
+    const [mostInfluentUsers, setMostInfluentUsers] = React.useState([]);
+    const [totalAgreements, setTotalAgreements] = React.useState();
+    const [totalReplies, setTotalReplies] = React.useState();
+    const [totalAnsweredQuestions, setTotalAnsweredQuestions] = React.useState();
 
     React.useEffect(() => {
         fetchUserInteraction()
-            .then( users => {
-                
-                // setUsers(users)
-                if (users.length > 0) {
-                    getAllAgreements(users);
-                    getAllReplies(users);
-                    getAllAnsweredQuestions(users);
-                };
-                
-                const usersMeanInteractions = users.map(user => {
-                    const agreementsPercentage = (100 * user.agreements ) / totalAgreements;
-                    const repliesPercentage = (100 * user.replies ) / totalReplies;
-                    const aQuestionsPercentage = (100 * user.answered_questions ) / totalAnsweredQuestions;
-                    const mean = (agreementsPercentage + (repliesPercentage * 2) + aQuestionsPercentage) / 4;
-                    return user = ({ mean_interaction: mean.toFixed(2), ...user });
-                });
-                setUsers(usersMeanInteractions);
-            
-            });
+            .then( data => setUsers(data));
 
-    }, [])
+        
+    }, []);
+                
+    React.useEffect(() => {
+        getAllAgreements(users);
+        getAllReplies(users);
+        getAllAnsweredQuestions(users);
+
+        const usersMeanInteractions =  users.map(user => {
+            const agreementsPercentage = getMean(user.agreements, totalAgreements);
+            const repliesPercentage = getMean(user.replies, totalReplies);
+            const aQuestionsPercentage = getMean(user.answered_questions, totalAnsweredQuestions);
+            const mean = (agreementsPercentage + (repliesPercentage * 3) + aQuestionsPercentage) / 5;
+            return user = ({ mean_interaction: mean, ...user });
+        });
+        
+        setUsersMean(usersMeanInteractions);
+        
+    }, [users, totalAgreements, totalReplies, totalAnsweredQuestions]);
 
     React.useEffect(() => {
-        setMostInfluentUser(users.sort((a, b) => parseFloat(b.mean_interaction) - parseFloat(a.mean_interaction)) )
-    }, [users]);
+        setMostInfluentUsers(usersMean.sort((a, b) => b.mean_interaction - a.mean_interaction));
+    }, [usersMean]);
 
     const getAllAgreements = data => {
         const tAgreements = data.reduce((acc, user) => {
@@ -62,25 +63,27 @@ const MostInfluent = () => {
         setTotalAnsweredQuestions(tAnsweredQuestions);
     };
 
+    const getMean = (partial, total) => (100 * partial) / total;
+
     return ( 
         <div className="theBestWrapper">
             <div className="theBest">
-            <div className="ball"></div>
+                <div className="ball"></div>
                 <div className="person-txt-container">
-                    <p>{mostInfluentUser[0].name}</p>
+                    <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[0].name : ''}</p>
                 </div>
             </div>
             <div className="theBest">
-            <div className="ball"></div>
-                <div className="person-txt-container">
-                    <p>{mostInfluentUser[1].name}</p>
+                <div className="ball"></div>
+                    <div className="person-txt-container">
+                        <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[1].name : ''}</p>
+                    </div>
                 </div>
+                <div className="theBest">
+                    <div className="ball"></div>
+                <div className="person-txt-container">
+                <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[2].name : ''}</p>
             </div>
-            <div className="theBest">
-            <div className="ball"></div>
-                <div className="person-txt-container">
-                    <p>{mostInfluentUser[2].name}</p>
-                </div>
             </div>
         </div>
     );

@@ -122,6 +122,33 @@ export const getSummaryProjectsByUser = async () => {
  return data;
 };
 
+export const getDivergencePointEngagement = async () => {
+  const {data} = await api(`/projects/v1/project/${localStorage.getItem('id')}/divergence-point-engagement`,
+  {
+    method: "GET", 
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+})
+ return data;
+};
+
+
+export const getCommentsGroupedByQuestionReport = async (id) => {
+  const {data} = await api(`/projects/v1/divergence-point/${id}/comment/report`,
+  {
+    method: "GET", 
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+})
+ return data;
+};
+
+
+
+
+
 //O Id abaixo /projects/v1/map/ >> 61a135358d09f1002bfaa2f4 <</divergence-point
 //veio da requisição fetchMapById, fica localizado em maps[indice].id
 export const getAllDivergencePointsByMapId = async () => {
@@ -138,16 +165,16 @@ export const getAllDivergencePointsByMapId = async () => {
 //MapId
 //O Id abaixo /projects/v1/divergence-point/ >> 61b8a0f12f64c2239f995dd5 << /comment/report
 //veio da requisição anterior, fica localizado em content.id
-export const getCommentsGroupedByQuestionReport = async () => {
-  const {data} = await api(`/projects/v1/divergence-point/61b8a0f12f64c2239f995dd5/comment/report`,
-  {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-})
- return data;
-};
+// export const getCommentsGroupedByQuestionReport = async () => {
+//   const {data} = await api(`/projects/v1/divergence-point/61b8a0f12f64c2239f995dd5/comment/report`,
+//   {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem("token")}`,
+//   },
+// })
+//  return data;
+// };
 
 
 

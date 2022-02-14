@@ -5,6 +5,7 @@ import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
 import ChartJourney2 from '../ChartsJourney/ChartJourney2.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
 import MostInfluent from '../MostInfluent/MostInfluent';
+import Comment from '../Comment/Comment';
 import { fetchMapById, fetchMapStatistics, fetchProjectById, getCommentsGroupedByQuestionReport, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
 import { AuthContext } from "../providers/auth";
 
@@ -141,34 +142,9 @@ function Projetos() {
                 <div className="rightBar">
                         <PeopleContainer props={projectUsers}/>
                         <h3 className="partTitle">Participantes mais influentes</h3>
-                        {/* MOACKADINHO DO SUCESSO */}
                         <MostInfluent />
-                        {/* <div className="theBestWrapper">
-                            <div className="theBest">
-                            <div className="ball"></div>
-                                <div className="person-txt-container">
-                                    <p> Matheus </p>
-                                </div>
-                            </div>
-                            <div className="theBest">
-                            <div className="ball"></div>
-                                <div className="person-txt-container">
-                                    <p> Nath </p>
-                                </div>
-                            </div>
-                            <div className="theBest">
-                            <div className="ball"></div>
-                                <div className="person-txt-container">
-                                    <p> Rafael </p>
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="bestInteractionContainer">
-                            <h3 className="bICTitle">Comentários com mais interações</h3>
-                            <p className="bICText">comentário bem longo que foi escrito na strateegia,
-                                porque eu preciso de uma exemplo para os comentários
-                                com mais concordos do rolê
-                            </p>
+                           <Comment />
                             <p>
                             </p>
                         </div>
