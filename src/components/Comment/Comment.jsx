@@ -32,17 +32,7 @@ const Comment = () => {
     }, [commentsByQuestions]);
 
     React.useEffect(() => {
-        // if (comments.length > 0) {
-        //     const mostLikedLikes = comments.reduce((acc, value) => {
-        //         const moreLiked = acc.agreements.length > value.agreements.length;
-        //         const liked = moreLiked ? acc = acc : acc = value;
-        //         console.log(value.replies.length)
-        //         return liked;
-        //     });
 
-        //     const mostLiked = comments.filter(comment => comment.agreements.length === mostLikedLikes.agreements.length);
-        //     setLiked(mostLiked)
-        // }
         getAllLikes(comments);
         getAllReplies(comments);
         
@@ -70,16 +60,14 @@ const Comment = () => {
             const cLikes = acc + comment.agreements.length;
             return cLikes
         }, 0);
-        // console.log(' total likes: ' + tLikes);
         setTotalLikes(tLikes);
     };
     
     const getAllReplies = data => {
-        const tReplies = data.reduce((acc, comment, index) => {
+        const tReplies = data.reduce((acc, comment) => {
             const cReplies = acc + comment.replies.length;
             return cReplies;
         }, 0);
-        // console.log(' total replies: ' + tReplies);
         setTotalReplies(tReplies);
     };
 
@@ -88,11 +76,7 @@ const Comment = () => {
   return (
     <div>
         <h3 className="bICTitle">Comentários com mais interações</h3>
-        {/* <p className="bICText">comentário bem longo que foi escrito na strateegia,
-            porque eu preciso de uma exemplo para os comentários
-            com mais concordos do rolê
-        </p> */}
-        <p className="bICText">{mostInteractedComment.length > 0 ? mostInteractedComment[0].text : ''}</p>
+        <p className="bICText">{mostInteractedComment.length > 0 ? mostInteractedComment[0].text : 'Sem comentários'}</p>
     </div>
   )
 };
