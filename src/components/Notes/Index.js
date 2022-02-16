@@ -2,16 +2,11 @@ import React from 'react';
 import {
     Modal,
     ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
     useDisclosure,
     Textarea
   } from '@chakra-ui/react'
   import { ExpandIcon } from '../CreateIcon/CreateIcon';
+  import { CopyIcon, DeleteIcon } from '@chakra-ui/icons'
 import CustomModal from './CustomModal';
 
 const Notes = () => {
@@ -24,6 +19,7 @@ const Notes = () => {
     const handleSave = () => {
         setNotes([...notes, noteInput]);
         setNoteInput('');
+        if(isOpen) onClose()
         inputEl.current.focus();
     }
 
@@ -60,8 +56,19 @@ const Notes = () => {
         <button onClick={handleSave}> Salvar nota </button>
 
         <Modal isOpen={isOpen} onClose={onClose}  isCentered={true} className='note-modal'>
-            <ModalOverlay />
-            <CustomModal close={onClose}>
+            <ModalOverlay
+                bg='blackAlpha.300'
+                backdropFilter='blur(10px)'
+            />
+            <CustomModal
+                close={onClose}
+                saveNote={handleSave}
+                primaryBtn='Salvar nota'
+                mHeader={<div className='header-icons'>
+                            <CopyIcon w={23} h={23}/>
+                            <DeleteIcon w={23} h={23}/>
+                        </div>}
+            >
                 <Textarea 
                     ref={inputEl}
                     type="text"

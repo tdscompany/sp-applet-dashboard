@@ -7,22 +7,22 @@ import {
     ModalCloseButton,
     Button,
   } from '@chakra-ui/react'
+  import { ContractIcon } from '../CreateIcon/CreateIcon';
 
 const CustomModal = (props) => {
   return (
     <div>
     <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
-        <ModalCloseButton />
+        <ModalHeader>{props.mHeader}</ModalHeader>
         <ModalBody>
             {props.children}
         </ModalBody>
 
         <ModalFooter>
-        <Button colorScheme='blue' mr={3} onClick={props.close}>
-            Close
+        <Button colorScheme='#F16F96' mr={3} onClick={props.saveNote}>
+            {props.primaryBtn}
         </Button>
-        <Button variant='ghost'>Secondary Action</Button>
+        <ContractIcon className='contract-icon' onClick={props.close} />
     </ModalFooter>
 </ModalContent></div>
   )
