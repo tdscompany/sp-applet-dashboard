@@ -6,6 +6,7 @@ import ChartEDebates from "../Charts/ChartEDebates";
 import ChartEDiver from "../Charts/ChartEDiver";
 import Chart from "../HorizontalCharts/Chart";
 import Legend from '../HorizontalCharts/legend';
+import Notes from '../Notes/Index';
 import { AuthContext } from "../providers/auth";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
 import "./index.css";
@@ -14,16 +15,14 @@ function Comparacao() {
 
     const [journeys, setJourneys] = useState([]);
     const [listSelectedProject, setListSelectedProject] = useState([]);
-
     const [journeysList, setJourneysList] = useState([]);
-
     const auth = useContext(AuthContext);
-
     const [props1, setProps1] = useState([]);
     const [props2, setProps2] = useState([]);
     const [props3, setProps3] = useState([]);
     const [props4, setProps4] = useState([]);
     // const [props5, setProps5] = useState([]);
+
 
     useEffect(() => {
           fetchUserProjects(auth.apiToken ).then((data) => {
@@ -44,9 +43,7 @@ function Comparacao() {
             console.log('projeto', projeto)
             setJourneysList(state =>([...state, projeto]))
 
-       
     }
-
 
 
     const ListaProjetos = () => {
@@ -60,9 +57,7 @@ function Comparacao() {
         );
     }
 
-
-             
-
+   
 
     return (
         
@@ -102,23 +97,23 @@ function Comparacao() {
                              </div>
                         </div>
                         <div className="chartsContent">
-                             <ChartEDebates props={journeysList.map(journey => parseFloat(
-                                                        (journey.agreements_comments_count+journey.reply_comments_count)
-                                                        /
-                                                        ((journey.parent_comments_count*journey.people_active_count)/2)*100).toFixed(2)
-                                                   )} />
-                             <div className="iconAndText">
+                            <ChartEDebates props={journeysList.map(journey => parseFloat(
+                                (journey.agreements_comments_count+journey.reply_comments_count)
+                                /
+                                ((journey.parent_comments_count*journey.people_active_count)/2)*100).toFixed(2)
+                            )} />
+                            <div className="iconAndText">
                                 <img src="squareChat.svg" className="iconComp"/>
                                 <p>Engajamento<br/>nos debates</p>
-                             </div>
+                            </div>
                         </div>
                         <div className="chartsContent">
                             <ChartEQuestoes props={journeysList.map(journey => parseFloat(
-                                                                    journey.parent_comments_count
-                                                                    /
-                                                                    (journey.question_count*journey.people_active_count)*100)
-                                                                    .toFixed(2)
-                                                                    )}/>
+                                journey.parent_comments_count
+                                /
+                                (journey.question_count*journey.people_active_count)*100)
+                                .toFixed(2)
+                                )}/>
                             <div className="iconAndText">
                                 <img src="circledQuestion.svg" className="iconComp"/>
                                 <p>Engajamento<br/>nas questões</p>
@@ -143,13 +138,7 @@ function Comparacao() {
                 </div>
             </div>
             <div className="comp2">
-                <div className="notesWrapper">
-                    <h2>Notas</h2>
-                    <div className="notes">
-                        <input type="text" className="notesInput"></input>
-                    </div>
-                <button> Salvar nota </button>
-            </div>
+                <Notes />
             <div className="balanceProj">
                 
 
