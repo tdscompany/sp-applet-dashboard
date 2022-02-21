@@ -74,8 +74,8 @@ fetchMapStatisticsHome(auth.apiToken, id2).then((response2) => {
 
   useEffect(() => {
     fetchUserData(auth.apiToken).then((response) => {
-      //console.log(user)
-      // console.log('response', response);
+      console.log(response)
+      localStorage.setItem("userId", response.id);
       setUser(response);
 
       fetchUserProjects(auth.apiToken ).then((data) => {

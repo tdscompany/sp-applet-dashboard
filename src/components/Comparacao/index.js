@@ -31,16 +31,23 @@ function Comparacao() {
               dt.projects
             ))            
             setJourneys(...[currentJourneys.flat()])
-            console.log('Retorno de fetchUserProjects' , currentJourneys.flat())    
+            // console.log('Retorno de fetchUserProjects' , currentJourneys.flat())    
            });
       }, [auth.apiToken]);
+
+      useEffect(() => {
+        //   console.log(listSelectedProject);
+          localStorage.setItem(`projects`, listSelectedProject);
+      }, [listSelectedProject])
 
 
     const onSelectProject = async ({ target: { value: selectedProject }}) => {
 
         //console.log('linha 55' , selectedProject)
             let projeto = await fetchMapStatisticsComp(selectedProject)
-            console.log('projeto', projeto)
+            // console.log('projeto', projeto)
+            setListSelectedProject(listSelectedProject => [...listSelectedProject, projeto.id])
+            
             setJourneysList(state =>([...state, projeto]))
 
     }
@@ -138,7 +145,7 @@ function Comparacao() {
                 </div>
             </div>
             <div className="comp2">
-                <Notes />
+                <Notes selectedProj={listSelectedProject}/>
             <div className="balanceProj">
                 
 

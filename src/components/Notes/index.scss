@@ -1,0 +1,124 @@
+.notesWrapper {
+    margin-left:10%;
+    margin-top:-5%;
+    
+    .notes {
+        
+        background: #FFFFFF;
+        /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
+        border-radius: 12px;
+        height: 70%;
+        width: 100%;
+        margin-bottom: 30px;
+        
+    }
+    
+    .notesTArea.css-10gng87 {
+        width: 215px;
+        height: 305px;
+        border-radius: 12px;
+        border: 0px;
+        background: #FAFAFA;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 30px 10px;
+        z-index: 1;
+    }
+
+    .expand-icon {
+        position: relative;
+        top: 100%;
+        left: -10%;
+        cursor: pointer;
+        z-index: 20;
+    }
+}
+    
+/* ---------------- EXISTING NOTES ----------------------- */
+
+.existing-note {
+    background: #FAFAFA !important;
+    max-width: 194px;
+    max-height: 71px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    
+    p {
+        font-style: normal;
+        font-weight: normal;
+        line-height: 140%;
+        text-align: center;
+        font-size: 12px;
+        padding: 0 20px 25px 20px;
+    }
+    
+    span {
+        color: #C4C4C4;
+        font-size: 10px;
+        text-align: center;
+        padding-left: 70%;
+    }
+
+    .expand-icon {
+        position: relative;
+        top: -55%;
+        left: 88%;
+        cursor: pointer;
+        z-index: 20;
+
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
+    }
+}
+    
+/* ---------------- MODAL ----------------------- */
+
+.modalTArea.css-10gng87 {
+    height: 450px;
+    border: none;
+}
+
+.modalTArea.css-10gng87:focus, .css-10gng87[data-focus] {
+    border: none;
+    box-shadow: none;
+}
+
+.css-10gng87:hover {
+    border: none;
+    border-color: none !important;
+}
+.css-k0waxj {
+    justify-content: space-between !important;
+}
+
+.contract-icon {
+    cursor: pointer;
+    width: 50px !important;
+    height: 25px !important;
+}
+
+.chakra-modal__header.css-9fgtzh {
+    padding: 41px 46px 24px 16px;
+}
+
+
+.header-icons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-icons svg {
+    cursor: pointer;
+}
+
+.header-icons svg:first-of-type {
+    margin-right: 30px;
+}
+
+section.css-hxtskf {
+    max-width: 978px !important;
+    height: 638px;
+}
