@@ -3,10 +3,21 @@ import {
     Modal,
     ModalOverlay,
     useDisclosure,
-    Textarea
+    Textarea,
+    Button,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    IconButton,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuDivider,
+
   } from '@chakra-ui/react'
 import { ExpandIcon } from '../CreateIcon/CreateIcon';
-import { CopyIcon, DeleteIcon } from '@chakra-ui/icons'
+import { CopyIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons'
 import CustomModal from './CustomModal';
 import { getDatabase, ref, set, onValue, push } from "firebase/database";
 import { app } from '../../services/firebase';
@@ -23,6 +34,7 @@ const Notes = ({ selectedProj }) => {
     const inputEl = React.useRef();
     const { isOpen: isTxtModalOpen, onOpen: onTxtModalOpen, onClose: onTxtModalClose } = useDisclosure();
     const { isOpen: isNoteModalOpen, onOpen: onNoteModalOpen, onClose: onNoteModalClose } = useDisclosure();
+    const { isOpen: isAllNoteModalOpen, onOpen: onAllNoteModalOpen, onClose: onAllNoteModalClose } = useDisclosure();
     const userId = localStorage.getItem("userId");
     const date = new Date;
 
@@ -74,7 +86,7 @@ const Notes = ({ selectedProj }) => {
                 for (const note in data) {
                     if (Object.hasOwnProperty.call(data, note)) {
                         const notes = data[note];
-                        setExistingNotes(currValue => [...currValue, notes]);
+                        setExistingNotes([...existingNotes, notes]);
                     }
                 }
                 setExistingNotes(data);
@@ -143,7 +155,7 @@ const Notes = ({ selectedProj }) => {
                     <ExpandIcon className='expand-icon' onClick={onNoteModalOpen}/> 
                 </div>
             : 
-                <div className="notes">
+            <div className="tArea notes">
                     <Textarea 
                         ref={inputEl}
                         type="text"
@@ -157,7 +169,17 @@ const Notes = ({ selectedProj }) => {
                 </div>
             }
             
-        <button onClick={handleSave}> Salvar nota </button>
+        <button className='save_notes' onClick={handleSave}> Salvar nota </button>
+        <Menu>
+            <MenuButton className='add-see_notes' as={IconButton}
+            aria-label='Options'
+            icon={<AddIcon />}
+            />
+            <MenuList >
+                <MenuItem onClick={onTxtModalOpen}>nova nota</MenuItem>
+                <MenuItem onClick={onAllNoteModalOpen}>notas salvas</MenuItem>
+            </MenuList>
+        </Menu>
 
         <Modal isOpen={isTxtModalOpen} onClose={onTxtModalClose}  isCentered={true} className='note-modal'>
             <ModalOverlay
@@ -200,6 +222,31 @@ const Notes = ({ selectedProj }) => {
                         </div>}
             >
                 {Object.values(existingNotes).length > 0 ? <p key={1}>{Object.values(existingNotes)[0].note}</p> : '' }
+            </CustomModal>
+        </Modal>
+        <Modal isOpen={isAllNoteModalOpen} onClose={onAllNoteModalClose}  isCentered={true} className='note-modal'>
+            <ModalOverlay
+                bg='blackAlpha.300'
+                backdropFilter='blur(10px)'
+            />
+            <CustomModal
+                close={onAllNoteModalClose}
+                saveNote={handleSave}
+                primaryBtn='Salvar nota'
+                mHeader={<div className='header-icons'>
+                            <CopyIcon w={23} h={23}/>
+                            <DeleteIcon w={23} h={23}/>
+                        </div>}
+            >
+                <div className='flex-cards'>
+                    {Object.values(existingNotes).map(notes => (
+                        <div className='existing-note notes'>
+                            <span key={notes.date}>{notes.date.slice(0, 5)}</span>
+                            <p key={notes.note}>{notes.note.slice(0, 45)}...</p>
+                            <ExpandIcon className='expand-icon' onClick={onNoteModalOpen}/>
+                        </div>
+                    ))}
+                </div>
             </CustomModal>
         </Modal>
     </div>
