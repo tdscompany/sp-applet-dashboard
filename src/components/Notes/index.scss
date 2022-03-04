@@ -24,13 +24,6 @@
         z-index: 1;
     }
 
-    .expand-icon {
-        position: relative;
-        top: 96%;
-        left: -10%;
-        cursor: pointer;
-        z-index: 20;
-    }
 
     .tArea ~ .add-see_notes {
         visibility: hidden;
@@ -42,16 +35,16 @@
 
 .existing-note {
     background: #FAFAFA !important;
-    max-width: 194px;
+    width: 194px !important;
     max-height: 71px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     margin-bottom: 14px !important;
-
+    
     ~ .save_notes {
         visibility: hidden;
     }
-
+    
     
     
     p {
@@ -173,6 +166,21 @@ section.css-hxtskf {
     height: 638px;
 }
 
+.css-onkibi, .css-1lcdooi, .css-1lcdooi { // ICONS
+    &:hover {
+        path {
+            transition: 200ms;
+            fill: #D70858;
+        }
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+
 /* ---------------- MODAL NOTES ----------------------- */
 
 .flex-cards {
@@ -185,6 +193,21 @@ section.css-hxtskf {
         margin-bottom: 30px !important;
         width: 191px;
 
+        
     }
+    .expand-icon_modal {
+        position: relative;
+        top: -55%;
+        left: 90%;
+        cursor: pointer;
+        z-index: 20;
 
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
+    }
+    
 }

@@ -23,6 +23,7 @@ const Notes = ({ selectedProj }) => {
     const [noteInput, setNoteInput] = React.useState('');
     const [comparisonMatch, setComparisonMatch] = React.useState([]);
     const [existingNotes, setExistingNotes] = React.useState([]);
+    const [noteId, setNoteId] = React.useState(0);
 
     const inputEl = React.useRef();
 
@@ -41,7 +42,6 @@ const Notes = ({ selectedProj }) => {
         getDatabaseNotes(comparisonMatch, setExistingNotes);
     }, [comparisonMatch]);
 
-
     const handleSave = () => {
         if(!getDatabaseData()) {
             writeFirstUserNote(noteInput, selectedProj);
@@ -55,6 +55,12 @@ const Notes = ({ selectedProj }) => {
         inputEl.current.focus();
     }
 
+    const copyContent = content => navigator.clipboard.writeText(content);
+    const expandNoteModal = id => {
+        setNoteId(id);
+        onNoteModalOpen();
+    }
+
     const [ firstNote ] = existingNotes;
 
   return (
@@ -64,8 +70,8 @@ const Notes = ({ selectedProj }) => {
             ? 
                 <div className='existing-note notes'>
                     <span key={0}>{firstNote?.date?.slice(0, 5)}</span>
-                    <p key={1}>{firstNote?.note?.slice(0, 45)}...</p>
-                    <ExpandIcon className='expand-icon' onClick={onNoteModalOpen}/> 
+                    <p key={1}>{firstNote?.note?.slice(0, 45)}{firstNote.length > 44 ? '...' : ''}</p>
+                    <ExpandIcon className='expand-icon' onClick={() => expandNoteModal(0)}/> 
                 </div>
             : 
             <div className="tArea notes">
@@ -104,8 +110,8 @@ const Notes = ({ selectedProj }) => {
                 saveNote={handleSave}
                 primaryBtn='Salvar nota'
                 mHeader={<div className='header-icons'>
-                            <CopyIcon w={23} h={23}/>
-                            <DeleteIcon w={23} h={23}/>
+                            <CopyIcon w={23} h={23} onClick={() => copyContent(inputEl.current.value)}/>
+                            <DeleteIcon w={23} h={23} onClick={() => setNoteInput('')}/>
                         </div>}
             >
                 <Textarea 
@@ -130,11 +136,12 @@ const Notes = ({ selectedProj }) => {
                 saveNote={handleSave}
                 primaryBtn='Salvar nota'
                 mHeader={<div className='header-icons'>
-                            <CopyIcon w={23} h={23}/>
-                            <DeleteIcon w={23} h={23}/>
+                            <CopyIcon w={23} h={23} onClick={() => copyContent(existingNotes[noteId].note)}/>
+                            {/* <DeleteIcon w={23} h={23}/> */}
                         </div>}
+                class='hidden'
             >
-                {existingNotes.length > 0 ? <p key={1}>{firstNote.note}</p> : '' }
+                {existingNotes.length > 0 ? <p key={1}>{existingNotes[noteId].note}</p> : '' }
             </CustomModal>
         </Modal>
         <Modal isOpen={isAllNoteModalOpen} onClose={onAllNoteModalClose}  isCentered={true} className='note-modal'>
@@ -147,17 +154,13 @@ const Notes = ({ selectedProj }) => {
                 saveNote={handleSave}
                 primaryBtn='Salvar nota'
                 class='hidden'
-                // mHeader={<div className='header-icons'>
-                //             <CopyIcon w={23} h={23}/>
-                //             <DeleteIcon w={23} h={23}/>
-                //         </div>}
             >
                 <div className='flex-cards'>
-                    {existingNotes.map(note => (
+                    {existingNotes.map((note, id) => (
                         <div className='existing-note notes'>
                             <span key={note.date}>{note?.date?.slice(0, 5)}</span>
-                            <p key={note.note}>{note?.note?.slice(0, 45)}...</p>
-                            <ExpandIcon className='expand-icon' onClick={onNoteModalOpen}/>
+                            <p key={note.note}>{note?.note?.slice(0, 45)}{firstNote.length > 44 ? '...' : ''}</p>
+                            <ExpandIcon className='expand-icon_modal' onClick={() => expandNoteModal(id)}/>
                         </div>
                     ))}
                 </div>
