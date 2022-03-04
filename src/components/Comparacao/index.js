@@ -8,6 +8,7 @@ import Chart from "../HorizontalCharts/Chart";
 import Legend from '../HorizontalCharts/legend';
 import Notes from '../Notes/Index';
 import { AuthContext } from "../providers/auth";
+import { useHistory } from "react-router-dom";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import "./index.css";
@@ -17,16 +18,12 @@ function Comparacao() {
     const [journeys, setJourneys] = useState([]);
     const [listSelectedProject, setListSelectedProject] = useState([]);
     const [journeysList, setJourneysList] = useState([]);
+    const history = useHistory();
     const auth = useContext(AuthContext);
-    const [props1, setProps1] = useState([]);
-    const [props2, setProps2] = useState([]);
-    const [props3, setProps3] = useState([]);
-    const [props4, setProps4] = useState([]);
-    // const [props5, setProps5] = useState([]);
 
 
     useEffect(() => {
-          fetchUserProjects(auth.apiToken ).then((data) => {
+          fetchUserProjects(auth.apiToken).then((data) => {
             // console.log("fetchUserProjects data1" , data)
             const currentJourneys = data.map(dt => (
               dt.projects
@@ -36,12 +33,15 @@ function Comparacao() {
            });
       }, [auth.apiToken]);
 
-      useEffect(() => {
-        
-          localStorage.setItem(`projects`, listSelectedProject);
-          console.log(listSelectedProject)
-      }, [listSelectedProject])
+    useEffect(() => {
+    
+        localStorage.setItem(`projects`, listSelectedProject);
+        console.log(listSelectedProject)
+    }, [listSelectedProject]);
 
+    const handleRoute = () =>{ 
+        history.push("/Projetos");
+    }
 
     const onSelectProject = async ({ target: { value: selectedProject }}) => {
 
@@ -72,14 +72,16 @@ function Comparacao() {
         return (
             journeysList.map((c)=>(
                 <li key={c.id} className="ulItem">
-                    <p className="ulItem">{c.title.slice(0, 19)}</p>
+                    <p className="ulItem" 
+                    onClick={handleRoute}
+                    onMouseEnter={() => localStorage.setItem('id', c.id)}
+                    >
+                            {c.title.slice(0, 19)}</p>
                     <SmallCloseIcon onClick={() => removeSelection(c.id, c.title)}/>
                 </li>
             ))
         );
     }
-
-   
 
     return (
         

@@ -22,7 +22,7 @@ const Strateegia = () => {
 
   //Variaveis para dropdown
 
-  const history = useHistory();
+const history = useHistory();
 //   var largura = window.screen.width;
 //   var caixa3 = if (largura ) {
 //     instrução1
