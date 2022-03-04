@@ -12,19 +12,20 @@ import {
 const CustomModal = (props) => {
   return (
     <div>
-    <ModalContent>
-        <ModalHeader>{props.mHeader}</ModalHeader>
-        <ModalBody>
-            {props.children}
-        </ModalBody>
+      <ModalContent>
+          <ModalHeader>{props.mHeader}</ModalHeader>
+          <ModalBody>
+              {props.children}
+          </ModalBody>
 
         <ModalFooter>
-        <Button colorScheme='#F16F96' mr={3} onClick={props.saveNote}>
-            {props.primaryBtn}
-        </Button>
-        <ContractIcon className='contract-icon' onClick={props.close} />
-    </ModalFooter>
-</ModalContent></div>
+          <Button colorScheme='#F16F96' mr={3} onClick={props.saveNote} className={props.class}>
+              {props.primaryBtn}
+          </Button>
+          <ContractIcon className='contract-icon' onClick={props.close} />
+        </ModalFooter>
+      </ModalContent>
+    </div>
   )
 };
 

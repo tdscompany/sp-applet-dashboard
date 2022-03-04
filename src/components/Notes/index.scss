@@ -172,3 +172,19 @@ section.css-hxtskf {
     max-width: 978px !important;
     height: 638px;
 }
+
+/* ---------------- MODAL NOTES ----------------------- */
+
+.flex-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+    .existing-note {
+        margin-right: 30px;
+        margin-bottom: 30px !important;
+        width: 191px;
+
+    }
+
+}
