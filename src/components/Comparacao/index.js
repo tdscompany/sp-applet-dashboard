@@ -9,6 +9,7 @@ import Legend from '../HorizontalCharts/legend';
 import Notes from '../Notes/Index';
 import { AuthContext } from "../providers/auth";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
+import { SmallCloseIcon } from '@chakra-ui/icons'
 import "./index.css";
 
 function Comparacao() {
@@ -36,8 +37,9 @@ function Comparacao() {
       }, [auth.apiToken]);
 
       useEffect(() => {
-        //   console.log(listSelectedProject);
+        
           localStorage.setItem(`projects`, listSelectedProject);
+          console.log(listSelectedProject)
       }, [listSelectedProject])
 
 
@@ -52,6 +54,13 @@ function Comparacao() {
 
     }
 
+    const removeSelection = (id, title) => {
+        setListSelectedProject(listSelectedProject.filter(journey => (journey !== id)));
+        setJourneysList(journeysList.filter(journey => (journey.title !== title)));
+        localStorage.removeItem(`projects`);
+        localStorage.setItem(`projects`, listSelectedProject);
+    }
+
 
     const ListaProjetos = () => {
         return (
@@ -59,8 +68,14 @@ function Comparacao() {
         );
     }
     const ListaProjetosNome = () => {
+        console.log(journeysList)
         return (
-            journeysList.map((c)=><li key={c.id} className="ulItem"><p className="ulItem">{c.title}</p></li>)
+            journeysList.map((c)=>(
+                <li key={c.id} className="ulItem">
+                    <p className="ulItem">{c.title.slice(0, 19)}</p>
+                    <SmallCloseIcon onClick={() => removeSelection(c.id, c.title)}/>
+                </li>
+            ))
         );
     }
 

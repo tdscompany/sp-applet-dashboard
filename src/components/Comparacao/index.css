@@ -78,7 +78,22 @@ width: 100%;
   }
 
   .ulItem {
-      font-size:0.8rem;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    align-content: center;
+    justify-content: space-between;
+  }
+
+  p.ulItem {
+    font-weight: bold;
+    align-self: center;
+    width: 300px;
+  }
+
+  .ulItem svg {
+      margin-bottom: 2px;
   }
 
   .compProj {
