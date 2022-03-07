@@ -94,7 +94,7 @@ function Comparacao() {
                     <h3>Selecione até 5 jornadas para comprar os índices</h3>
                 </div>
 
-                <div className="comp1">
+                <div className="comparison">
                     <div className="jornadas">
                         {/* Aqui é onde adicionamos os valores na mudança da opção selecionada */}
                        <select className="dropdown" onChange={onSelectProject} disabled={journeysList.length >= 5}> 

@@ -112,7 +112,7 @@ export const fetchProjectById = async () => {
 
 
 export const getSummaryProjectsByUser = async () => {
-  const {data} = await api("/projects/v1/project/summary",
+  const {data} = await api("/projects/v1/project/summary?size=100",
   {
     method: "GET", 
     headers: {
