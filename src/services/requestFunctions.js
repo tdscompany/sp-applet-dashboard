@@ -11,7 +11,6 @@ export const authenticate = async (values) => {
   })
     .then((response) => {
       functionReturn = response;
-      console.log(response);
     })
     .catch((err) => {
       throw Error(err.message);

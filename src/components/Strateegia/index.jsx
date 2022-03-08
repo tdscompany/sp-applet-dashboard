@@ -16,7 +16,6 @@ const Strateegia = () => {
 
   useEffect(() => {
     fetchUserData(auth.apiToken).then((response) => {
-      console.log(response)
       localStorage.setItem("userId", response.id);
       setUser(response);
 

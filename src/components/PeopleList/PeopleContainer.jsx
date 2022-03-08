@@ -1,16 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import ButtonPeople from './ButtonPeople';
-import { BiSearch } from 'react-icons/bi';
+import { Input ,InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Search2Icon } from '@chakra-ui/icons'
 import People from './People.jsx'
-import {fetchProjectById, fetchUserInteraction} from "../../services/requestFunctions";
+import { fetchProjectById } from "../../services/requestFunctions";
 
 import "./PeopleContainer.css";
 
 const PeopleContainer = () => {
 
-    //State responsavel por popular a lista de usuarios no projeto
-    
-    const [busca, setBusca] = useState('');
+    const [searchValue, setSearchValue] = useState('');
     const [people, setPeople] = useState([
         {
             id: "1",
@@ -24,31 +22,49 @@ const PeopleContainer = () => {
         }
     ]);
 
-    // console.log(busca)
-
     useEffect(() => {
         fetchProjectById().then((users) =>{
             if(users) {
                 const usersList = users.users
+                console.log(usersList)
                 setPeople(usersList)
             }
         })
     }, []);
 
+
+    const inputHandler = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setSearchValue(lowerCase);
+    };
+
+    const filteredPeopleList = people.filter(el => {
+        return el.name.toLowerCase().includes(searchValue);
+    });
+    
+
     return ( 
         <div className="people-container">
             <div className="search-person">
-                <input 
-                   className="search-person-input"
-                    defaultValue="Buscar"
-                    type="text"                     
-                    onChange={(event) => setBusca(event.target.value)}
-                    value={busca}
-            />
-                    <ButtonPeople className="people-button"><BiSearch/></ButtonPeople>
+                <InputGroup>
+                    <Input
+                        className="search-person-input"
+                        type='text'
+                        placeholder='Buscar'
+                        // value={searchValue}
+                        onChange={inputHandler}
+                        
+                        
+                    />
+                    <InputRightElement
+                    pointerEvents='none'
+                    children={<Search2Icon color='#545151' />}
+                    />
+                </InputGroup>
             </div>
+            <p className='members-length'>{people.length} membros</p>
             <div className="PeopleListBox">
-                <People people={people}/>
+                <People people={ filteredPeopleList || people}/>
             </div>
         </div>
      );

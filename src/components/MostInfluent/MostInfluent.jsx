@@ -68,18 +68,21 @@ const MostInfluent = () => {
     return ( 
         <div className="theBestWrapper">
             <div className="theBest">
+                <p>1º</p>
                 <div className="ball"></div>
                 <div className="person-txt-container">
                     <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[0].name : ''}</p>
                 </div>
             </div>
             <div className="theBest">
+                <p>2º</p>
                 <div className="ball"></div>
                     <div className="person-txt-container">
                         <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[1].name : ''}</p>
                     </div>
                 </div>
                 <div className="theBest">
+                    <p>3º</p>
                     <div className="ball"></div>
                 <div className="person-txt-container">
                 <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[2].name : ''}</p>

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar2 from "../Navbarv2";
-import "./index.css";
 import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
 import ChartJourney2 from '../ChartsJourney/ChartJourney2.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
@@ -8,9 +7,10 @@ import MostInfluent from '../MostInfluent/MostInfluent';
 import Comment from '../Comment/Comment';
 import { fetchMapById, fetchMapStatistics, fetchProjectById, getCommentsGroupedByQuestionReport, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
 import { AuthContext } from "../providers/auth";
-
+import { ReactComponent as ImageProject } from '../../assets/imgProject.svg'
 import {BsFillPersonFill} from 'react-icons/bs';
 import printJS from "print-js";
+import "./index.scss";
 
 function Projetos() {
 
@@ -105,11 +105,11 @@ function Projetos() {
                         <p>dashboard {'>'} página de projeto</p>
                     </div>
                     <div className="resumoJornada">
-                        <img src="group96.svg" className="imgProjetcs"/>
+                        <ImageProject className="imgProjetcs"/>
                         <div className="infoP">
                             <h1>{project.title}</h1>
-                            <p className="titleP">Criada em {newDate.getDay()}/{newDate.getMonth()}/{newDate.getFullYear()}</p>
-                            <p className="titleP">Última atividade 2 dias atrás</p>
+                            <p className="titleP">criada em {newDate.toLocaleDateString()}</p>
+                            <p className="titleP">última atividade 2 dias atrás</p>
                         </div>
                     </div>
                     <div className="introData">
