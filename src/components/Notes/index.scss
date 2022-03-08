@@ -1,16 +1,17 @@
 .notesWrapper {
-    margin-left:10%;
-    margin-top:-5%;
+    margin-left: 4vw;
+
+    h2 {
+        font-weight: 400;
+        color: #232222;
+    }
     
     .notes {
-        
         background: #FFFFFF;
-        /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
         border-radius: 12px;
-        height: 70%;
+        height: 280px;
         width: 100%;
         margin-bottom: 30px;
-        
     }
     
     .notesTArea.css-10gng87 {
@@ -27,6 +28,26 @@
 
     .tArea ~ .add-see_notes {
         visibility: hidden;
+    }
+
+    .save_notes {
+        height: 35px;
+        margin-left: -10px;
+    }
+
+    .expand-icon {
+        position: relative;
+        top: -13%;
+        left: 87%;
+        cursor: pointer;
+        z-index: 20;
+
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
     }
 
 }
@@ -63,9 +84,12 @@
         padding-left: 70%;
     }
 
-    .expand-icon {
-        position: relative;
-        top: -55%;
+}
+
+.expand-icon_note-modal {
+
+    position: relative;
+        top: -17%;
         left: 88%;
         cursor: pointer;
         z-index: 20;
@@ -76,7 +100,6 @@
                 fill: #D70858;
             }
         }
-    }
 }
 
 .add-see_notes {
@@ -197,8 +220,8 @@ section.css-hxtskf {
     }
     .expand-icon_modal {
         position: relative;
-        top: -55%;
-        left: 90%;
+        top: -49%;
+        left: 76%;
         cursor: pointer;
         z-index: 20;
 

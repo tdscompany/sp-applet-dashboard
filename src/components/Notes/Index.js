@@ -71,7 +71,7 @@ const Notes = ({ selectedProj }) => {
                 <div className='existing-note notes'>
                     <span key={0}>{firstNote?.date?.slice(0, 5)}</span>
                     <p key={1}>{firstNote?.note?.slice(0, 45)}{firstNote.length > 44 ? '...' : ''}</p>
-                    <ExpandIcon className='expand-icon' onClick={() => expandNoteModal(0)}/> 
+                     
                 </div>
             : 
             <div className="tArea notes">
@@ -84,10 +84,14 @@ const Notes = ({ selectedProj }) => {
                         placeholder='clique para adicionar uma nota sobre o comparativo'
                         resize='none'
                     />
-                    <ExpandIcon className='expand-icon' onClick={onTxtModalOpen}/> 
                 </div>
             }
             
+        {existingNotes.length > 0 ?
+            <ExpandIcon className='expand-icon_note-modal' onClick={() => expandNoteModal(0)}/>
+        :
+            <ExpandIcon className='expand-icon' onClick={onTxtModalOpen}/>
+        }
         <button className='save_notes' onClick={handleSave}> Salvar nota </button>
         <Menu>
             <MenuButton className='add-see_notes' as={IconButton}
@@ -157,9 +161,11 @@ const Notes = ({ selectedProj }) => {
             >
                 <div className='flex-cards'>
                     {existingNotes.map((note, id) => (
-                        <div className='existing-note notes'>
-                            <span key={note.date}>{note?.date?.slice(0, 5)}</span>
-                            <p key={note.note}>{note?.note?.slice(0, 45)}{firstNote.length > 44 ? '...' : ''}</p>
+                        <div>
+                            <div className='existing-note notes'>
+                                <span key={note.date}>{note?.date?.slice(0, 5)}</span>
+                                <p key={note.note}>{note?.note?.slice(0, 40)}{note?.note?.length > 40 ? '...' : ''}</p>
+                            </div>
                             <ExpandIcon className='expand-icon_modal' onClick={() => expandNoteModal(id)}/>
                         </div>
                     ))}

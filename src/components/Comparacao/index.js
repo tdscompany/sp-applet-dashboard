@@ -7,11 +7,13 @@ import ChartEDiver from "../Charts/ChartEDiver";
 import Chart from "../HorizontalCharts/Chart";
 import Legend from '../HorizontalCharts/legend';
 import Notes from '../Notes/Index';
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
 import { useHistory } from "react-router-dom";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
+import { Select } from '@chakra-ui/react'
 import { SmallCloseIcon } from '@chakra-ui/icons'
-import "./index.css";
+import "./index.scss";
 
 function Comparacao() {
 
@@ -36,7 +38,6 @@ function Comparacao() {
     useEffect(() => {
     
         localStorage.setItem(`projects`, listSelectedProject);
-        console.log(listSelectedProject)
     }, [listSelectedProject]);
 
     const handleRoute = () =>{ 
@@ -64,15 +65,14 @@ function Comparacao() {
 
     const ListaProjetos = () => {
         return (
-            journeys.map((c)=><option value={c.id}>{c.title}</option>)
+            journeys.map((c)=><option value={c.id} id={c.id}>{c.title}</option>)
         );
     }
     const ListaProjetosNome = () => {
-        console.log(journeysList)
         return (
             journeysList.map((c)=>(
                 <li key={c.id} className="ulItem">
-                    <p className="ulItem" 
+                    <p  
                     onClick={handleRoute}
                     onMouseEnter={() => localStorage.setItem('id', c.id)}
                     >
@@ -89,18 +89,17 @@ function Comparacao() {
         <Navbar2 />
             <div className="wrapper">
                 <div className="containerTxt">
-                    <p>dashboard {'>'} comparação avançada</p>
+                    <p><Link to='/'>dashboard</Link> {'>'} comparação avançada</p>
                     <h1>Comparação avançada </h1>
                     <h3>Selecione até 5 jornadas para comprar os índices</h3>
                 </div>
 
                 <div className="comparison">
                     <div className="jornadas">
-                        {/* Aqui é onde adicionamos os valores na mudança da opção selecionada */}
-                       <select className="dropdown" onChange={onSelectProject} disabled={journeysList.length >= 5}> 
-                            <option value="default" >Escolha um projeto</option>
+                       <Select className="dropdown" onChange={onSelectProject} disabled={journeysList.length >= 5}> 
+                            <option value="default">Jornadas</option>
                             <ListaProjetos />
-                        </select>
+                        </Select>
                      
                         <div className="wrapperProj">
                             <div>
@@ -128,7 +127,7 @@ function Comparacao() {
                             )} />
                             <div className="iconAndText">
                                 <img src="squareChat.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nos debates</p>
+                                <p>Engajamento nos debates</p>
                             </div>
                         </div>
                         <div className="chartsContent">
@@ -140,7 +139,7 @@ function Comparacao() {
                                 )}/>
                             <div className="iconAndText">
                                 <img src="circledQuestion.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nas questões</p>
+                                <p>Engajamento nas questões</p>
                             </div>
                         </div>
                         <div className="chartsContent">
@@ -155,7 +154,7 @@ function Comparacao() {
                                                 }/>
                             <div className="iconAndText">
                                 <img src="chatBubbles.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nas divergências</p>
+                                <p>Engajamento nas divergências</p>
                             </div>
                         </div>
                     </div>
@@ -163,6 +162,7 @@ function Comparacao() {
             </div>
             <div className="comp2">
                 <Notes selectedProj={listSelectedProject}/>
+                <div>
             <div className="balanceProj">
                 
 
@@ -192,11 +192,10 @@ function Comparacao() {
                     />)
                 }
 
-                <Legend/>
+                {journeysList.length > 0 ? <Legend/> : ''}
             </div>
 
-            <div>
-                <button className="btnPng">Download PNG</button>
+            {journeysList.length > 0 ? <button className="btnPng">Download PNG</button> : ''}
             </div>
         </div>
     </div>

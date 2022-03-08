@@ -1,4 +1,13 @@
 .chartTitle {
-    margin-bottom:1vh;
+    margin-bottom: 16px;
     font-weight: bold;
+}
+
+.balanceProj canvas {
+    height: 80px !important;
+}
+
+.balanceProj .chartWrapper, .legendWrapper {
+    width: 300px;
+    margin: 20px 100px 0px 20px;
 }
