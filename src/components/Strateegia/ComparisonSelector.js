@@ -42,8 +42,10 @@ const ComparisonSelector = ({ projects }) => {
                 </div>
                 <Link to='/Comparacao'>ir para comparação avançada</Link>
             </div>
-            <JourneyDisplay projectStatistics={projectStatistics1}/>
-            <JourneyDisplay projectStatistics={projectStatistics2}/>
+            <div className='projects-data'>
+                <JourneyDisplay projectStatistics={projectStatistics1}/>
+                <JourneyDisplay projectStatistics={projectStatistics2}/>
+            </div>
         </div>
     </div>
   )
