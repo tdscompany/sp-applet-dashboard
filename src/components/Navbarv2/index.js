@@ -44,12 +44,12 @@ const Navbar2 = ({ username }) => {
           
           <ul className='nav-menu-items' onClick={showSidebar}>
               <li className="navbar-toogle">
-                  <Link to="#" className='menu-bars'>
+                  {/* <Link to="#" className='menu-bars'>
                     <AiIcons.AiOutlineClose />
-                  </Link>
+                  </Link> */}
               </li>
               
-            
+
               {SidebarData.map((item, index) =>{
                   return(
                       <li key={index} className={item.cName}>
@@ -65,12 +65,6 @@ const Navbar2 = ({ username }) => {
                     <FiIcons.FiLogOut/>
                     <span>Fazer logout</span>
                   </Link>
-              </li>
-              <li key= {4} className='hexa'>
-                <Link to=''>
-                  <h3>Inicio</h3>
-                  <FiHexagon size = {35}/>
-                </Link>
               </li>
               
           </ul>

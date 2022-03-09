@@ -427,10 +427,13 @@
     visibility: hidden;
   }
   .cadastre-se-G {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    text-align: center;
   }
-  .cdLink{
-    margin-left: 35%;
+  .cadastre-se-G span {
+    margin: 0;
   }
 
 }

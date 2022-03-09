@@ -1,0 +1,236 @@
+.notesWrapper {
+    margin-left: 4vw;
+
+    h2 {
+        font-weight: 400;
+        color: #232222;
+    }
+    
+    .notes {
+        background: #FFFFFF;
+        border-radius: 12px;
+        height: 280px;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .notesTArea.css-10gng87 {
+        width: 215px;
+        height: 305px;
+        border-radius: 12px;
+        border: 0px;
+        background: #FAFAFA;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 30px 10px;
+        z-index: 1;
+    }
+
+
+    .tArea ~ .add-see_notes {
+        visibility: hidden;
+    }
+
+    .save_notes {
+        height: 35px;
+        margin-left: -10px;
+    }
+
+    .expand-icon {
+        position: relative;
+        top: -13%;
+        left: 87%;
+        cursor: pointer;
+        z-index: 20;
+
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
+    }
+
+}
+    
+/* ---------------- EXISTING NOTES ----------------------- */
+
+.existing-note {
+    background: #FAFAFA !important;
+    width: 194px !important;
+    max-height: 71px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    margin-bottom: 14px !important;
+    
+    ~ .save_notes {
+        visibility: hidden;
+    }
+    
+    
+    
+    p {
+        font-style: normal;
+        font-weight: normal;
+        line-height: 140%;
+        text-align: center;
+        font-size: 12px;
+        padding: 0 20px 25px 20px;
+    }
+    
+    span {
+        color: #C4C4C4;
+        font-size: 10px;
+        text-align: center;
+        padding-left: 70%;
+    }
+
+}
+
+.expand-icon_note-modal {
+
+    position: relative;
+        top: -17%;
+        left: 88%;
+        cursor: pointer;
+        z-index: 20;
+
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
+}
+
+.add-see_notes {
+    position: relative;
+    left: 65px;
+    border-radius: 50px !important;
+    background: #D70858 !important;
+    box-shadow: 0px 4px 4px rgba(229, 229, 229, 0.33);
+    padding: 0;
+    margin-top: 0;
+    transform: scale(0.85);
+    z-index: 20;
+    
+    path {
+        fill: #FFFFFF;
+    }
+
+}
+
+#menu-list-10 {
+    position: relative;
+    width: 120px;
+    box-shadow: none;
+    top: -30px;
+    right: 95px;
+    background: transparent;
+    
+    button.css-13c7rae {
+        width: 120px;
+        background: #FFFFFF;
+        text-align: center;
+    
+        &:hover {
+            background: #D70858;
+            color: #FFFFFF;
+            transition: 300ms;
+        }
+    }
+}
+
+/* ---------------- MODAL ----------------------- */
+
+.modalTArea.css-10gng87 {
+    height: 450px;
+    border: none;
+}
+
+.modalTArea.css-10gng87:focus, .css-10gng87[data-focus] {
+    border: none;
+    box-shadow: none;
+}
+
+.css-10gng87:hover {
+    border: none;
+    border-color: none !important;
+}
+.css-k0waxj {
+    justify-content: space-between !important;
+}
+
+.contract-icon {
+    cursor: pointer;
+    width: 50px !important;
+    height: 25px !important;
+}
+
+.chakra-modal__header.css-9fgtzh {
+    padding: 41px 46px 24px 16px;
+}
+
+
+.header-icons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-icons svg {
+    cursor: pointer;
+}
+
+.header-icons svg:first-of-type {
+    margin-right: 30px;
+}
+
+section.css-hxtskf {
+    max-width: 978px !important;
+    height: 638px;
+}
+
+.css-onkibi, .css-1lcdooi, .css-1lcdooi { // ICONS
+    &:hover {
+        path {
+            transition: 200ms;
+            fill: #D70858;
+        }
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+
+/* ---------------- MODAL NOTES ----------------------- */
+
+.flex-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+    .existing-note {
+        margin-right: 30px;
+        margin-bottom: 30px !important;
+        width: 191px;
+
+        
+    }
+    .expand-icon_modal {
+        position: relative;
+        top: -49%;
+        left: 76%;
+        cursor: pointer;
+        z-index: 20;
+
+        &:hover {
+            path {
+                transition: 200ms;
+                fill: #D70858;
+            }
+        }
+    }
+    
+}

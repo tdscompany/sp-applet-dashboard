@@ -7,7 +7,7 @@ import {
 import {
   useHistory
 } from "react-router";
-import "./styles.css";
+import "./styles.scss";
 
 
 const Wellcome = ({
@@ -24,9 +24,9 @@ const Wellcome = ({
 
   return ( 
     <div className = "container">
-      <img src = "group96.svg" className = "imgWellcome"/>
-      <div className = "wellcome" >
-        <h3 className = "ola"> Olá,</h3> <h3 className="nome">{username}</h3 > <h3 className = "ola">!</h3> 
+      <img src = "group96.svg" />
+      <div className = "welcome" >
+        <h3 > Olá, {username} !</h3> 
         <p> Aqui você encontra os dados das suas jornadas em um só lugar </p> 
       </div >
 

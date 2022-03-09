@@ -11,7 +11,7 @@ const ChartPativas = ({props}) => {
                 datasets: [{
                     label: '',
                     data: [props[0], props[1], props[2], props[3], props[4] ],
-                    barThickness: 18,
+                    barThickness: 20,
                     backgroundColor: [
                         '#125AB8',
                         '#7AB4DB',
@@ -20,7 +20,8 @@ const ChartPativas = ({props}) => {
                         '#DBEBF5'
                     ],
                     
-                    borderWidth: 1
+                    borderWidth: 0,
+                    borderRadius: 6,
                 }]
             }}
             options={{

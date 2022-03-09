@@ -1,37 +1,34 @@
 .container {
     display:flex;
     margin-top: 8vh;
-}
+    align-items: center;
 
-.imgWellcome {
-    margin-left: 7vw;
-    height:11vh;
-}
+    img {
+        margin-left: 11vw;
+        height:11vh;
 
-.wellcome {
-    justify-content: flex-start;
-    position: relative;
-    font-weight: 400;
-    color:#474143 ;
-    margin-top: 1vh;
-    margin-left: 1vw;
+    }
+
+    .welcome {
+        justify-content: flex-start;
+        position: relative;
+        font-weight: 400;
+        color:#474143 ;
+        margin-top: 1vh;
+        margin-left: 40px;   
+
+        h3 {
+            font-size: 40px;
+            font-weight: 500;
+            color: #232222;
+        }
+
+        p {
+            font-size: 24px;
+            color: #2322225E;
+        }
+    }
     
-}
-
-.wellcome h3 {
-    font-size: 1.5rem;
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-}
-
-.wellcome p {
-    font-size: 1rem;
-}
-
-.ola{
-    margin-right: 5px;
-    color: black;
 }
 
 

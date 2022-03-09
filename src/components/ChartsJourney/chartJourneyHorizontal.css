@@ -8,6 +8,7 @@
 }
 
 .progressH {
+    display: flex;
     background-color:#e5e5e500;
     border-radius: 0 28px 28px 0;
     height: 3.5vh;
@@ -15,8 +16,8 @@
 }
 
 .progressTxtH {
-    
     font-weight: 600;
+    margin-left: 15px;
 }
 
 .progress-doneH{
@@ -24,7 +25,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 0 4px 4px 0;
-    background-color: #125ab8a1;
+    background-color: #125AB8;
     height: 3.5vh;
     width:150px;
 }

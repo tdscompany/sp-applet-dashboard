@@ -6,63 +6,82 @@ import ChartEDebates from "../Charts/ChartEDebates";
 import ChartEDiver from "../Charts/ChartEDiver";
 import Chart from "../HorizontalCharts/Chart";
 import Legend from '../HorizontalCharts/legend';
+import Notes from '../Notes/Index';
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
+import { useHistory } from "react-router-dom";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
-import "./index.css";
+import { Select } from '@chakra-ui/react'
+import { SmallCloseIcon } from '@chakra-ui/icons'
+import "./index.scss";
 
 function Comparacao() {
 
     const [journeys, setJourneys] = useState([]);
     const [listSelectedProject, setListSelectedProject] = useState([]);
-
     const [journeysList, setJourneysList] = useState([]);
-
+    const history = useHistory();
     const auth = useContext(AuthContext);
 
-    const [props1, setProps1] = useState([]);
-    const [props2, setProps2] = useState([]);
-    const [props3, setProps3] = useState([]);
-    const [props4, setProps4] = useState([]);
-    // const [props5, setProps5] = useState([]);
 
     useEffect(() => {
-          fetchUserProjects(auth.apiToken ).then((data) => {
+          fetchUserProjects(auth.apiToken).then((data) => {
             // console.log("fetchUserProjects data1" , data)
             const currentJourneys = data.map(dt => (
               dt.projects
             ))            
             setJourneys(...[currentJourneys.flat()])
-            console.log('Retorno de fetchUserProjects' , currentJourneys.flat())    
+            // console.log('Retorno de fetchUserProjects' , currentJourneys.flat())    
            });
       }, [auth.apiToken]);
 
+    useEffect(() => {
+    
+        localStorage.setItem(`projects`, listSelectedProject);
+    }, [listSelectedProject]);
+
+    const handleRoute = () =>{ 
+        history.push("/Projetos");
+    }
 
     const onSelectProject = async ({ target: { value: selectedProject }}) => {
 
         //console.log('linha 55' , selectedProject)
             let projeto = await fetchMapStatisticsComp(selectedProject)
-            console.log('projeto', projeto)
+            // console.log('projeto', projeto)
+            setListSelectedProject(listSelectedProject => [...listSelectedProject, projeto.id])
+            
             setJourneysList(state =>([...state, projeto]))
 
-       
     }
 
+    const removeSelection = (id, title) => {
+        setListSelectedProject(listSelectedProject.filter(journey => (journey !== id)));
+        setJourneysList(journeysList.filter(journey => (journey.title !== title)));
+        localStorage.removeItem(`projects`);
+        localStorage.setItem(`projects`, listSelectedProject);
+    }
 
 
     const ListaProjetos = () => {
         return (
-            journeys.map((c)=><option value={c.id}>{c.title}</option>)
+            journeys.map((c)=><option value={c.id} id={c.id}>{c.title}</option>)
         );
     }
     const ListaProjetosNome = () => {
         return (
-            journeysList.map((c)=><li key={c.id} className="ulItem"><p className="ulItem">{c.title}</p></li>)
+            journeysList.map((c)=>(
+                <li key={c.id} className="ulItem">
+                    <p  
+                    onClick={handleRoute}
+                    onMouseEnter={() => localStorage.setItem('id', c.id)}
+                    >
+                            {c.title.slice(0, 19)}</p>
+                    <SmallCloseIcon onClick={() => removeSelection(c.id, c.title)}/>
+                </li>
+            ))
         );
     }
-
-
-             
-
 
     return (
         
@@ -70,18 +89,17 @@ function Comparacao() {
         <Navbar2 />
             <div className="wrapper">
                 <div className="containerTxt">
-                    <p>dashboard {'>'} comparação avançada</p>
+                    <p><Link to='/'>dashboard</Link> {'>'} comparação avançada</p>
                     <h1>Comparação avançada </h1>
                     <h3>Selecione até 5 jornadas para comprar os índices</h3>
                 </div>
 
-                <div className="comp1">
+                <div className="comparison">
                     <div className="jornadas">
-                        {/* Aqui é onde adicionamos os valores na mudança da opção selecionada */}
-                       <select className="dropdown" onChange={onSelectProject} disabled={journeysList.length >= 5}> 
-                            <option value="default" >Escolha um projeto</option>
+                       <Select className="dropdown" onChange={onSelectProject} disabled={journeysList.length >= 5}> 
+                            <option value="default">Jornadas</option>
                             <ListaProjetos />
-                        </select>
+                        </Select>
                      
                         <div className="wrapperProj">
                             <div>
@@ -102,26 +120,26 @@ function Comparacao() {
                              </div>
                         </div>
                         <div className="chartsContent">
-                             <ChartEDebates props={journeysList.map(journey => parseFloat(
-                                                        (journey.agreements_comments_count+journey.reply_comments_count)
-                                                        /
-                                                        ((journey.parent_comments_count*journey.people_active_count)/2)*100).toFixed(2)
-                                                   )} />
-                             <div className="iconAndText">
+                            <ChartEDebates props={journeysList.map(journey => parseFloat(
+                                (journey.agreements_comments_count+journey.reply_comments_count)
+                                /
+                                ((journey.parent_comments_count*journey.people_active_count)/2)*100).toFixed(2)
+                            )} />
+                            <div className="iconAndText">
                                 <img src="squareChat.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nos debates</p>
-                             </div>
+                                <p>Engajamento nos debates</p>
+                            </div>
                         </div>
                         <div className="chartsContent">
                             <ChartEQuestoes props={journeysList.map(journey => parseFloat(
-                                                                    journey.parent_comments_count
-                                                                    /
-                                                                    (journey.question_count*journey.people_active_count)*100)
-                                                                    .toFixed(2)
-                                                                    )}/>
+                                journey.parent_comments_count
+                                /
+                                (journey.question_count*journey.people_active_count)*100)
+                                .toFixed(2)
+                                )}/>
                             <div className="iconAndText">
                                 <img src="circledQuestion.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nas questões</p>
+                                <p>Engajamento nas questões</p>
                             </div>
                         </div>
                         <div className="chartsContent">
@@ -136,20 +154,15 @@ function Comparacao() {
                                                 }/>
                             <div className="iconAndText">
                                 <img src="chatBubbles.svg" className="iconComp"/>
-                                <p>Engajamento<br/>nas divergências</p>
+                                <p>Engajamento nas divergências</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="comp2">
-                <div className="notesWrapper">
-                    <h2>Notas</h2>
-                    <div className="notes">
-                        <input type="text" className="notesInput"></input>
-                    </div>
-                <button> Salvar nota </button>
-            </div>
+                <Notes selectedProj={listSelectedProject}/>
+                <div>
             <div className="balanceProj">
                 
 
@@ -179,11 +192,10 @@ function Comparacao() {
                     />)
                 }
 
-                <Legend/>
+                {journeysList.length > 0 ? <Legend/> : ''}
             </div>
 
-            <div>
-                <button className="btnPng">Download PNG</button>
+            {journeysList.length > 0 ? <button className="btnPng">Download PNG</button> : ''}
             </div>
         </div>
     </div>
