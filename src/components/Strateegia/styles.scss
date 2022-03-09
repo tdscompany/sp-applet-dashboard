@@ -193,9 +193,10 @@
           .element{
             display:flex;
             flex-direction:row;
-            justify-content:center;
+            justify-content: flex-end;
             align-items:center;
             margin-top: 25px;
+            width: 37%;
 
             h3 {
               font-weight: 500;
