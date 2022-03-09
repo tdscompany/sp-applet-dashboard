@@ -11,13 +11,41 @@
     flex-direction: row;
 }
 
-.search-person-input {
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+.css-4302v8 {
+    max-width: 88%;
+    margin-bottom: 8px;
+
+}
+
+.search-person-input.css-18g31kk{
+    background: #F8F8F8;
+    border: none;
+}
+
+.css-18g31kk:focus {
+    background-color: #23222213;
+    border: none;
+    box-shadow: none !important;
+    transition: 300ms;
+}
+
+.PeopleListBox::-webkit-scrollbar {
+    width: 12px;
+}
+  
+.PeopleListBox::-webkit-scrollbar-track {
+    background: transparent;  
+    border-radius: 20px;
+}
+  
+.PeopleListBox::-webkit-scrollbar-thumb {
+    background-color: #23222236;
+    border-radius: 20px;
+}
+    
+.PeopleListBox::-webkit-scrollbar-thumb:hover {
+    background-color: #23222257;
+    transition: 200ms;
 }
 
 .add-task-container{
@@ -37,4 +65,13 @@
     width: 22vw;
     height: 29vh;      
     overflow: auto;
+
+    margin-bottom: 30px;
+}
+
+.members-length {
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #23222299;
+    padding-left: 2px;
 }

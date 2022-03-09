@@ -1,0 +1,179 @@
+.comparacao {
+    display:flex;
+    flex-direction:column;
+
+    .containerTxt {
+        justify-content:start;
+        top:0;
+
+        p {
+            margin-left: 10vw;
+            margin-bottom: 35px;
+            color: #B4B4B4;
+            // width: 100vw;
+            
+            a {
+                text-decoration: none;
+            }
+        }
+
+        h1 {
+            margin-left: 10vw;
+            margin-bottom: 6px;
+            color: #232222;
+            // width: 100vw;
+
+            font-size: 40px;
+            font-weight: 400;
+        }
+
+        h3 {
+            margin-left: 10vw;
+            color: #2322228A;
+            // width: 100vw;
+
+            font-size: 16px;
+            font-weight: 400;
+        }
+     
+    }
+
+
+
+
+    .comparison {
+        display:flex;
+        flex-direction:row;
+        margin-top: 2.5%;
+        
+        .jornadas{
+            height:30%;
+            width: 19%;
+            margin-left: 10vw;
+        }
+
+        .compProj {
+            margin-left:66px;
+            width: 60%;
+            height: 100%;
+            display:flex;
+            flex-direction:column;
+
+            h3 {
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: 5%;
+            }
+        }
+    }
+}
+
+.wrapper {
+    top:25%;
+    display:flex;
+    flex-direction:column;
+    width: 100%;
+    height: 1000px;
+
+    .wrapperProj{
+        margin-top: 2.5%;
+        margin-bottom: 70px;
+        
+        .listaProjetos2 {
+            overflow:hidden; 
+            height:25%;   
+            width: 100%;
+        
+            .ulItem {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                align-content: center;
+                justify-content: space-between;
+                
+                margin-left: 4px;
+                
+                p {
+                    font-size: 16px;
+                    font-weight: 400;
+                    align-self: center;
+                    width: 200px;
+                }
+            
+                svg {
+                    margin-bottom: 2px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .comp2 {
+        // width: 100%;
+        display:flex;
+        flex-direction:row;
+        justify-content: flex-start;
+     }
+}
+
+
+
+  .charts {
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    width: 780px;
+    height: 100%;
+    
+    .chartsContent {
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        // margin-left: 15%;
+        
+        .iconAndText{
+            margin-top:-15%;
+            display: flex;
+            align-items: center; 
+            
+            .iconComp {
+                margin-left:1%;
+                height: 100%;
+            }
+
+            p {
+                margin-left:5%;
+                font-size:0.6rem;
+                font-weight: bold;
+                width: 160px;
+            }
+        }
+    }
+}
+
+ /* PARTE INFERIOR DA TELA DE COMPARAÇÕES */
+
+ 
+
+
+
+
+
+.balanceProj {
+    
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    min-width: 900px;
+    margin-left: 8vw;
+    flex-wrap: wrap;
+}
+
+.btnPng {
+    margin-left: 50.5vw;
+    margin-top: 6vh;
+    width: 12vw;
+}
+

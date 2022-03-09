@@ -14,7 +14,7 @@ const Chart = ({pac, end, enq, endi, title}) => {
                 datasets: [{
                     label: '',
                     data: [pac, end, enq, endi],
-                    barThickness: 14,
+                    barThickness: 18,
                     backgroundColor: [
                         '#51C0A5',
                         '#51C0A58F',
@@ -24,10 +24,11 @@ const Chart = ({pac, end, enq, endi, title}) => {
 
 
                     
-                    borderWidth: 1,
+                    borderWidth: 0,
                     datalabels: {
                         
-                    }
+                    },
+                    borderRadius: 6,
                 }]
             }}
             options={{

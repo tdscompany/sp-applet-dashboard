@@ -11,7 +11,6 @@ export const authenticate = async (values) => {
   })
     .then((response) => {
       functionReturn = response;
-      console.log(response);
     })
     .catch((err) => {
       throw Error(err.message);
@@ -32,8 +31,8 @@ export const fetchUserData = async (token) => {
 
 //Adicionando essas funcões/variaveis na intenção de resgatar Json
 
-export const fetchUserProjects = async (token) => {
-  const { data } = await api("/projects/v1/project", {
+export const fetchUserProjects = async () => {
+  const { data } = await api("/projects/v1/project?size=100", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -112,7 +111,7 @@ export const fetchProjectById = async () => {
 
 
 export const getSummaryProjectsByUser = async () => {
-  const {data} = await api("/projects/v1/project/summary",
+  const {data} = await api("/projects/v1/project/summary?size=100",
   {
     method: "GET", 
     headers: {
