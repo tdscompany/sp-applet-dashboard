@@ -14,6 +14,7 @@ import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestF
 import { Select } from '@chakra-ui/react'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import "./index.scss";
+import CarouselItem from './Carousel';
 
 function Comparacao() {
 
@@ -26,12 +27,10 @@ function Comparacao() {
 
     useEffect(() => {
           fetchUserProjects(auth.apiToken).then((data) => {
-            // console.log("fetchUserProjects data1" , data)
             const currentJourneys = data.map(dt => (
               dt.projects
             ))            
             setJourneys(...[currentJourneys.flat()])
-            // console.log('Retorno de fetchUserProjects' , currentJourneys.flat())    
            });
       }, [auth.apiToken]);
 
@@ -45,13 +44,10 @@ function Comparacao() {
     }
 
     const onSelectProject = async ({ target: { value: selectedProject }}) => {
-
-        //console.log('linha 55' , selectedProject)
-            let projeto = await fetchMapStatisticsComp(selectedProject)
-            // console.log('projeto', projeto)
-            setListSelectedProject(listSelectedProject => [...listSelectedProject, projeto.id])
-            
-            setJourneysList(state =>([...state, projeto]))
+        let projeto = await fetchMapStatisticsComp(selectedProject)
+        setListSelectedProject(listSelectedProject => [...listSelectedProject, projeto.id])
+        
+        setJourneysList(state =>([...state, projeto]))
 
     }
 
@@ -84,7 +80,6 @@ function Comparacao() {
     }
 
     return (
-        
     <div className="comparacao">
         <Navbar2 />
             <div className="wrapper">
@@ -112,6 +107,7 @@ function Comparacao() {
                 <div div className="compProj">
                     <h3 className="titleComp">Comparativo por índice dos projetos</h3>
                     <div className="charts">
+                        <CarouselItem><p>dddd</p><p>dasdasd</p></CarouselItem>
                         <div className="chartsContent">
                              <ChartPAtivas props={journeysList.map(journey => journey.people_active_count)}/>
                              <div className="iconAndText">
@@ -164,8 +160,6 @@ function Comparacao() {
                 <Notes selectedProj={listSelectedProject}/>
                 <div>
             <div className="balanceProj">
-                
-
                 {
                     journeysList.map((journey, index)=> <Chart
                         key={journey.id}
