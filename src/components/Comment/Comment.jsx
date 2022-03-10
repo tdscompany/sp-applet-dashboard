@@ -75,7 +75,7 @@ const Comment = () => {
 
   return (
     <div>
-        <h3 className="bICTitle">Comentários com mais interações</h3>
+        <h3 className="bICTitle">Comentário com mais interações</h3>
         <p className="bICText">{mostInteractedComment.length > 0 ? mostInteractedComment[0].text : 'Sem comentários'}</p>
     </div>
   )

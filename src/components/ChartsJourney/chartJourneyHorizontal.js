@@ -3,16 +3,15 @@ import "./chartJourneyHorizontal.css";
 
 const ProgressH = ({ done }) => (
     <div className="progress">
-
-    <div className="progressH">
-        <div className="progress-doneH" style={{
-            opacity:1,
-            width: `${done}%`
-        }}>
-        </div>
-    </div> 
-            <p className="progressTxtH">{done}%</p>
+        <div className="progressH">
+            <div className="progress-doneH" style={{
+                opacity:1,
+                width: `${done}%`
+            }}>
             </div>
+        </div> 
+        <p className="progressTxtH">{done}%</p>
+    </div>
 );
 
 const ProgressH2 = ({ done }) => (

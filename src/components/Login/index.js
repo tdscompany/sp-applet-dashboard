@@ -78,7 +78,7 @@ const Login = () => {
             <div className="form-side">
               <div className = "login-wrapper">
 
-                <h2 className="loginH3"> Os dados das suas jornadas em strateegia em um só lugar </h2> <p> Insira seus dados de login do Strateegia </p> 
+                <h2 className="loginH3"> Os dados das suas jornadas strateegia em um só lugar </h2> <p> Insira seus dados de login do Strateegia </p> 
                 <form className = "login-form" onSubmit = {handleSubmit(handleLogin)}>
                   <FormControl isInvalid = {errors.email} mt = "10">
                     <Input id = "email"

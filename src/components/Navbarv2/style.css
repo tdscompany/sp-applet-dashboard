@@ -147,7 +147,8 @@ span {
 
 
 @media screen and (max-width:550px) {
-.navbar {
+
+/* .navbar {
     width:100%;
     display: flex;
     justify-content: start;
@@ -156,38 +157,49 @@ span {
     z-index: 999;
     top:-45%;
     cursor: pointer;
-}
-
-
-
-
+} */
 
 .nav-menu {
-    background-color:#D70858 ;
     width: 100%;
-    height:30%;
-    display: flex;
-    justify-content: center;
+    height: 10%;
+    left: 0%;
+}
+
+.nav-menu .icon {
+    margin-left: 5vw;
     position: fixed;
-    top: -30%;
-    transition: 650ms;
-    z-index: 999;
-    cursor: pointer;
+    top: 2.5%;
+}
+
+.nav-menu.active .x-icon {
+    margin-left: 43px;
+}
+
+.nav-menu.active .x-icon::marker {
+    color: #D70858;
 }
 
 .nav-menu.active {
     top:0;
+    height: 100%;
     transition: 350ms;
 }
 
+.nav-menu.active * .nav-text {
+    display: flex;
+    margin-top: 20px;
+    
+}
 .nav-text{
-    display:flex;
+
+    display: none;
+    /* display:flex;
     justify-content: start;
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
-    width: 77%;
+    width: 77%; */
 }
 
 .nav-text a {
@@ -244,10 +256,6 @@ span {
     margin-left: 16px;
 }
 
-.icon {
-    width: 0;
-    height: 0;
-}
 
 .hexa {
     margin-top: -22%;
@@ -267,10 +275,6 @@ span {
     left:-50%;
     cursor: pointer;
 }
-
-
-
-
 
 .nav-menu {
     background-color:#D70858 ;
@@ -371,10 +375,39 @@ span {
 
 
 @media screen and (max-width:1240px) and (min-width : 1120px) {
-
     .icon {
         margin-left: 15vw ;
     }
 
+}
+
+@media only screen and (min-width: 1041px) and (max-width: 1119px) {
+    .icon {
+        margin-left: 14.8vw ;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1040px) {
+    .icon {
+        margin-left: 19.2vw ;
+    }
+}
+
+@media only screen and (min-width: 701px) and (max-width: 799px) {
+    .icon {
+        margin-left: 18.5vw ;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 700px) {
+    .icon {
+        margin-left: 18vw ;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .icon {
+        margin-left: 11.5vw ;
+    }
 }
 

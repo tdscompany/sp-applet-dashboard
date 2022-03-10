@@ -1,6 +1,3 @@
-//Sessão de dados iniciais e boxes display
-//DAQUI PARA BAIXO É NECESSARIO FAZER A RESPONSIVIDADE
-
 .Wrapper {
   display: flex;
   flex-direction: column;
@@ -161,6 +158,11 @@
         text-decoration: none;
         margin-top: 25px;
       } 
+    }
+
+    .projects-data {
+      display: flex;
+      flex-direction: row;
     }
     
     .comp1 {
@@ -444,11 +446,14 @@ height:10%;
 }
 
 
-@media only screen and (min-width : 800px) and (max-width : 1119px) {
+@media only screen and (min-width : 489px) and (max-width : 1119px) {
 .Wrapper {
 
   .wrapperBoxes {
-    width: 514px;
+    // width: 514px;
+    min-width: 375px;
+      // margin: 0;
+    max-width: auto !important;
 
     .box1 {
       align-items: center;
@@ -529,6 +534,8 @@ height:10%;
 @media screen and (max-width: 480px) {
 
   .Wrapper {
+
+    margin-top: 50px;
     .container {
       flex-direction: column;
 

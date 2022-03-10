@@ -77,12 +77,12 @@ const ProgressH2 = ({ done }) => (
     <div className='progress'>
         <div className="progressH">
             <div className="progress-doneH2" style={{
-                opacity:1,
+                opacity: 1,
                 width: `${done}%`
             }}>
             </div>
+            <p className="progressTxtH">{done}%</p>
         </div> 
-        <p className="progressTxtH">{done}%</p>
     </div>
 );
 
@@ -176,25 +176,25 @@ const ChartJourney1 = ({props , props2}) => {
                 <div className="chartJourHoriWrapper">
                     <ProgressH done={Math.round((props.people_active_count / props2?.users.length)*100)}/>
                     <ProgressH2 done={
-                  parseFloat(Math.round
-                    (props.parent_comments_count
-                    /
-                    (props.question_count*props.people_active_count)*100))
-                    }/>
+                        parseFloat(Math.round
+                            (props.parent_comments_count
+                            /
+                            (props.question_count*props.people_active_count)*100))
+                            }/>
                     <ProgressH3 done={parseFloat(Math.round
-                    ((props.agreements_comments_count+props.reply_comments_count)
-                    /
-                    ((props.parent_comments_count*props.people_active_count)/2)*100))
-                  }/>
+                        ((props.agreements_comments_count+props.reply_comments_count)
+                        /
+                        ((props.parent_comments_count*props.people_active_count)/2)*100))
+                    }/>
                     <ProgressH4 done={
-                  parseFloat(Math.round
-                      ((props.parent_comments_count
-                      /
-                      (props.question_count*props.people_active_count))
-                    +
-                    (((props.agreements_comments_count+props.reply_comments_count)
-                    /
-                    ((props.parent_comments_count*props.people_active_count)/2))/2)*100))}/>
+                        parseFloat(Math.round
+                            ((props.parent_comments_count
+                            /
+                            (props.question_count*props.people_active_count))
+                            +
+                            (((props.agreements_comments_count+props.reply_comments_count)
+                            /
+                            ((props.parent_comments_count*props.people_active_count)/2))/2)*100))}/>
                 </div>
                 <Legend />
             </div>

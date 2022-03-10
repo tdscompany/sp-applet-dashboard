@@ -38,7 +38,7 @@
     background-color: #A6CDE7;
     height: 3.5vh;
     width:150px;    
-    max-width: 25vw;
+    /* max-width: 25vw; */
 }
 
 .progress-doneH3{
@@ -49,7 +49,7 @@
     background-color: #7AB4DB;
     height: 3.5vh;
     width:150px;    
-    max-width: 25vw;
+    /* max-width: 25vw; */
 }
 
 .progress-doneH4{
@@ -60,5 +60,5 @@
     background-color: #DBEBF5;
     height: 3.5vh;
     width:150px;    
-    max-width: 25vw;
+    /* max-width: 25vw; */
 }

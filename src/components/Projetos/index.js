@@ -1,16 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Box
+  } from '@chakra-ui/react'
 import Navbar2 from "../Navbarv2";
 import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
-import ChartJourney2 from '../ChartsJourney/ChartJourney2.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
 import MostInfluent from '../MostInfluent/MostInfluent';
 import Comment from '../Comment/Comment';
-import { fetchMapById, fetchMapStatistics, fetchProjectById, getCommentsGroupedByQuestionReport, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
-import { AuthContext } from "../providers/auth";
+import { fetchMapById, fetchMapStatistics, fetchProjectById, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
 import { ReactComponent as ImageProject } from '../../assets/imgProject.svg'
-import {BsFillPersonFill} from 'react-icons/bs';
 import printJS from "print-js";
 import "./index.scss";
+import WindowSize from "./WindowSize";
 
 function Projetos() {
 
@@ -26,74 +32,32 @@ function Projetos() {
     };
     
     //State responsavel por mostrar as visualizações do dropdown
-    const [viewMode, setViewMode] = useState("indices");
-    //console.log(viewMode);
-    const auth = useContext(AuthContext);
     const [project, setProject] = useState({});
     const [projectStatistics, setProjectStatistics] = useState({});
     const [projectUsers, setProjectUsers] = useState({});
+    
 
 
     const newDate = new Date(project.created_at);
 
     useEffect(() => {
         fetchMapById().then((response) => {
-          //console.log(user)
-        //   console.log( "Map1 (Dados dos mapas)" , response);
           setProject({...response});
-          
-          //ESSA ESTRUTURA VAI CRIAR UM ARRAY PARA RECEBER O VALOR DE INTERAÇÃO
-          // DE CADA USUARIO, QUE SE INICIA VAZIA (PARA QUE DEPOIS EU POSSA ITERAR COM ESTRUTURA
-          // DE REPETIÇÃO USANDO UM COUNTER PARA ADICIONAR OS VALORES AS NOVAS CHAVES NOS OBJETOS)
-          if (response) {
-          let arrayProjectUsers = project.users;
-          let usersData = [];
-          //console.log('Array de pessoas' , arrayProjectUsers);
-        //   arrayProjectUsers.forEach((user) => {
-        //     usersData.push({name: user.name , id: user.id , questionsAnswered: 0, totalAgreementsUser: 0})
-        //   })
-        //   console.log('Array de pessoas iterado' , usersData)
-          }
-
-          let mapsId = [...response.maps];
-        //   console.log('Array da Maps da jornada (Id e Nome)' , mapsId)
-          //inserir aqui uma estrutura de repetição que vai realizar o getAllDivergencePointsByMapId
-          //para cada id no mapsId, POR ENQUANTO É O MOCKADIN DO SUCESSO
           if (response && projectStatistics !== '') {
               getAllDivergencePointsByMapId().then((response) => {
-          console.log("Retorno getAllDivergencePointsByMapId" , response)
-        });
+            console.log("Retorno getAllDivergencePointsByMapId" , response)
+            });
 
-        
-        fetchMapStatistics().then((response) => {
-            //console.log(user)
-            // console.log("Retorno de fetchMapStatistics (Dados para comparações)" ,response);
-            setProjectStatistics({...response});
-            
-        })
+            fetchMapStatistics().then((response) => setProjectStatistics({...response}))
             }
-            
+
         });
 
-        fetchProjectById().then((response) => {
-            //console.log(user)
-            //console.log("Map3" ,response);
-            setProjectUsers({...response});
-        });
+        fetchProjectById().then((response) => setProjectUsers({...response}));
 
-        
+    }, []);
 
-        getCommentsGroupedByQuestionReport().then((response) => {
-            console.log('Resposta de getCommentsGroupedByQuestionReport' , response)
-        })
-
-}, [] );
-
-  
-
-    // function handleSelection(e){
-    //     setViewMode(e.target.value)
-    // }; 
+    // console.log(WindowSize(600));
 
     return (
         
@@ -113,49 +77,70 @@ function Projetos() {
                         </div>
                     </div>
                     <div className="introData">
-                        {/* <h3>Modo de visualização</h3>
-                        <div className="inferior">
-                            <p>Selecione um tipo de visualização das informações da jornada</p>
-                
-                             <select className="dropdownData" onChange={handleSelection} defaultValue={viewMode}>
-                                    <option value="indices" >Índices</option>
-                                    <option value="jornadas" >Jornadas</option>
-                                    <option value="participantes" >Participantes</option>
-                                    <option value="ferramentas" >Ferramentas</option>
-                            </select>
-                        </div> */}
+                    {!WindowSize(800) ? 
+                    (<Accordion defaultIndex={[0]} allowMultiple>
+                        <AccordionItem>
+                            <h3>
+                                <AccordionButton>
+                                        Participantes
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h3>
+                            <AccordionPanel pb={4}>
+                                <PeopleContainer props={projectUsers}/>
+                            </AccordionPanel>
+                        </AccordionItem>
+                        
+                        <AccordionItem>
+                            <h3>
+                                <AccordionButton>
+                                Participantes mais influentes
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h3>
+                            <AccordionPanel pb={4}>
+                                <MostInfluent />
+                            </AccordionPanel>
+                        </AccordionItem>
+
+                        <AccordionItem>
+                            <h3>
+                                <AccordionButton>
+                                Comentário com mais interação
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h3>
+                            <AccordionPanel pb={4}>
+                                <Comment />
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>) 
+                : ''}
                     </div>
                     <div className="dataWrapper">
                         <div className="data">
                             <ChartJourney1 props={projectStatistics} props2={project}/>
                         </div>
-                        {/* <div className="data">
-                            {viewMode === "indices" && <ChartJourney1/>}
-                            {viewMode === "jornadas" && <ChartJourney2/>}
-                            {viewMode === "participantes" && <ChartJourney1/>}
-                            {viewMode === "ferramentas" && <ChartJourney1/>}
-                
-                        </div> */}
-                
+                    
                     </div>
                 </div>
-                <div className="rightBar">
+                {!WindowSize(800) ? '' 
+                :
+                    (<div className="rightBar">
                         <PeopleContainer props={projectUsers}/>
                         <h3 className="partTitle">Participantes mais influentes</h3>
                         <MostInfluent />
                         <div className="bestInteractionContainer">
-                           <Comment />
-                            <p>
-                            </p>
+                            <Comment />
+                            
                         </div>
-                        {/* Criar aqui um component para exibir o top 3 de pessoas
-                        com mais comentarios na plataformar que não tenham o status de admin
-                        ou habilitador */}
                         <button className="btnProj" onClick={printPage}>
                                 Baixar relatorio
                         </button>
-                    </div>
+                    </div>) 
+                }
             </div>
+            {!WindowSize(800) ? <button className="btnProj" onClick={printPage}>Baixar relatorio</button> : ''} 
         </div>
             
        

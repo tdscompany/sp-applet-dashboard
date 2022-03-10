@@ -161,3 +161,197 @@
     padding: 15px;
     width: 300px;
 }
+
+@media screen and (min-width: 800px) and (max-width: 1240px) {
+    .bICText {
+        width: auto;
+    }
+
+    .btnProj {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .mainWrapper {
+
+        .textTitle{
+            margin-left: 15vw;
+        }
+        .resumoJornada {
+            width: 80%;
+            align-self: center;
+
+            svg {
+                margin: auto 20px;
+            }
+        }
+
+        .introData {
+            flex: 7;
+            margin-left: 15vw;
+
+            .chakra-accordion button {
+                color: #232222;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .PeopleListBox {
+                width: auto;
+                margin-bottom: 0;
+
+                .person-container {
+                    width: 400px;
+
+                    .person-icon {
+                        width: 6vw;
+                    }
+
+                    .person-txt-container {
+                        width: 200px;
+                    }
+                }
+            }
+
+            .theBestWrapper {
+                width: 100%;
+                margin-bottom: 0;
+
+                .theBest {
+                    width: 100%;
+                }
+            }
+
+            .bICTitle {
+                display: none;
+            }
+        }
+        
+        .dataWrapper {
+            margin: 7vw 7vw;
+            height: 68vw;
+            width: 90%;
+        
+            .data {
+                width: 90%;
+            }
+        }
+
+    }
+
+    .btnProj {
+        margin-left: 70vw;
+        width: 20vw;
+        margin-bottom: 40px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    .mainWrapper {
+        margin-top: 60px;
+
+        .textTitle {
+            margin-left: 11vw;
+            width: 100%;
+        }
+    }
+    .resumoJornada {
+        margin-left: 0 !important;
+    }
+
+    .introData {
+        margin-left: 8vw !important;
+
+        .PeopleListBox {
+            width: 130% !important;
+        }
+    }
+
+    .data {
+        margin-left: 1vw;
+    }
+
+    .chartJWrapper {
+        flex-direction: column;
+
+        .leftData {
+            width: 100%;
+
+            .progressBar {
+                width: 80%;
+            }
+        }
+
+        .rightData {
+            width: 100%;
+            margin-top: 110px;
+            margin-left: 3.5vw;
+
+            .progressH {
+                width: 80%;
+            }
+        }
+    }
+
+    .btnProj {
+        margin-top: 65vh;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+    .textTitle {
+        margin-bottom: 9px !important;
+    }
+    .resumoJornada {
+        background-color: transparent !important;
+        
+        p {
+            font-weight: 400;
+        }
+
+        svg {
+            display: none;    
+        }
+    }
+
+    .introData {
+        width: 100%;
+        margin: 0 !important;
+
+        .PeopleListBox {
+            width: 100% !important;
+            margin-bottom: 0;
+
+            .person-container {
+                width: 200px !important;
+
+                .person-icon {
+                    width: 13vw !important;
+                    margin-right: 5px;
+                }
+
+                .person-txt-container {
+                    width: 200px !important;
+                }
+            }
+        }
+    }
+
+    .dataWrapper {
+        margin: 0 !important;
+
+        .legendWrapper2 {
+            flex-direction: column;
+        }
+    }
+
+    .btnProj {
+        margin-top: 77vh;
+        width: 30vw;
+    }
+}

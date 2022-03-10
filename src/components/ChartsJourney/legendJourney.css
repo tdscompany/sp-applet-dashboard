@@ -59,3 +59,9 @@
     font-size: 0.75rem;
     margin-top:0.65vh;
 }
+
+@media screen and (min-width: 640px) and (max-width: 1240px) {
+    .legendWrapper2 {
+        flex-direction: column;
+    }
+}
