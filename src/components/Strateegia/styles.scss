@@ -116,6 +116,7 @@
     .comp0{
       margin:2%;
       margin-left: 3.5%;
+      width: 480px;
 
       h3 {
         font-size: 24px;
@@ -168,9 +169,8 @@
     .comp1 {
       align-self: flex-start;
       justify-content:center;
-      margin-right: -15%;
-      
-      width: 350px;
+      width: 200px ;
+      margin-right: -5% ;
       padding-top: 27px;
       
       .horizontalDisplay{

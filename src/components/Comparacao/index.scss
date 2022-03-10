@@ -177,3 +177,84 @@
     width: 12vw;
 }
 
+@media screen and (max-width: 1250px) {
+
+    .wrapper {
+        width: 95vw;
+
+        .comparison {
+            flex-direction: column;
+        }
+
+        .jornadas {
+            flex: 4;
+            height: 100% !important;
+            width: 70% !important;
+        }
+
+        .wrapperProj {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 545px;
+
+            .listaProjetos2 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                .ulItem {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .compProj {
+            // width: 50% !important;
+            .charts {
+                flex: 6;
+                justify-content: flex-start;
+                width: 50%;
+
+                .chartsContent {
+                    height: auto;
+                    width: 160px;
+
+                    .iconAndText {
+                        width: 80%;
+                    }
+                }
+            }
+
+        }
+
+    }
+    
+    .balanceProj {
+        justify-content: flex-start;
+        min-width: 0 ;
+
+        .chartWrapper {
+            margin-right: 25px;
+        }
+    }
+
+    .btnPng {
+        margin-left: 40vw;
+        width: 15vw;
+        margin-bottom: 6vh;
+    }
+}
+
+@media screen and (max-width: 720px) { 
+
+
+    .wrapper {
+        justify-content: center;
+        margin-top: 46vh;
+    }
+
+    .wrapperProj {
+        width: 300px !important;
+    }
+}
