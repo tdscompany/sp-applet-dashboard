@@ -208,10 +208,6 @@
 }
 
 
-
-
-
-
 .box1 {
 height: 30%;
 width: 12%;
@@ -331,7 +327,6 @@ width: 20vw;
 
 .iconComp {
 margin-left:-8vw;
-width: 1.5vw;
 }
 
 .comp2{
@@ -446,7 +441,7 @@ height:10%;
 }
 
 
-@media only screen and (min-width : 489px) and (max-width : 1119px) {
+@media only screen and (min-width: 481px) and (max-width : 1119px) {
 .Wrapper {
 
   .wrapperBoxes {
@@ -513,7 +508,7 @@ height:10%;
     width: auto;
 
     .css-42b2qy {
-      width: 95%;
+      width: 70%;
     }
   }
 
@@ -529,6 +524,10 @@ height:10%;
   }
 }
 
+}
+
+@media screen and (max-width : 700px){
+  
 }
 
 @media screen and (max-width: 480px) {
@@ -610,13 +609,21 @@ height:10%;
       width: auto;
       margin-left: 2% !important;
 
+      h3 {
+        font-size: 20px !important;
+      }
+
+      p {
+        width: 55%;
+      }
+
       h3, p {
         text-align: center;
         margin-right: 0;
       }
   
       .css-42b2qy {
-        width: 90%;
+        width: 60%;
       }
 
       .btnComp {

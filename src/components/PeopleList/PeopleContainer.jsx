@@ -26,7 +26,6 @@ const PeopleContainer = () => {
         fetchProjectById().then((users) =>{
             if(users) {
                 const usersList = users.users
-                console.log(usersList)
                 setPeople(usersList)
             }
         })

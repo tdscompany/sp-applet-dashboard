@@ -1,32 +1,20 @@
 import React from 'react';
-import Item from './Item';
-import Carousel, { consts } from 'react-elastic-carousel';
 import ChartPAtivas from "../Charts/ChartPAtivas";
 import ChartEQuestoes from "../Charts/ChartEQuestoes";
 import ChartEDebates from "../Charts/ChartEDebates";
 import ChartEDiver from "../Charts/ChartEDiver";
-import './carousel.scss';
 
-
-const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-];
-
-const CarouselItem = ({journeyArr}) => {
+const VerticalCharts = ({ journeyArr }) => {
   return (
     <div className="charts">
-      <Carousel breakPoints={breakPoints}>
-          <Item className="chartsContent">
-              <ChartPAtivas props={journeyArr.map(journey => journey.people_active_count)}/>
-            <div className="iconAndText">
-              <img src="group.svg" className="iconComp"/>
-              <p>Pessoas ativas na jornada</p>
-            </div>
-        </Item>
-          <Item className="chartsContent">
+        <div className="chartsContent">
+                <ChartPAtivas props={journeyArr.map(journey => journey.people_active_count)}/>
+                <div className="iconAndText">
+                <img src="group.svg" className="iconComp"/>
+                <p>Pessoas ativas na jornada</p>
+                </div>
+        </div>
+        <div className="chartsContent">
             <ChartEDebates props={journeyArr.map(journey => parseFloat(
                 (journey.agreements_comments_count+journey.reply_comments_count)
                 /
@@ -36,8 +24,8 @@ const CarouselItem = ({journeyArr}) => {
                 <img src="squareChat.svg" className="iconComp"/>
                 <p>Engajamento nos debates</p>
             </div>
-          </Item>
-        <Item className="chartsContent">
+        </div>
+        <div className="chartsContent">
             <ChartEQuestoes props={journeyArr.map(journey => parseFloat(
                 journey.parent_comments_count
                 /
@@ -48,8 +36,8 @@ const CarouselItem = ({journeyArr}) => {
                 <img src="circledQuestion.svg" className="iconComp"/>
                 <p>Engajamento nas questões</p>
             </div>
-        </Item>
-        <Item className="chartsContent">
+        </div>
+        <div className="chartsContent">
             <ChartEDiver props={journeyArr.map(journey => parseFloat( 
                 (journey.parent_comments_count
                 /
@@ -63,10 +51,9 @@ const CarouselItem = ({journeyArr}) => {
                 <img src="chatBubbles.svg" className="iconComp"/>
                 <p>Engajamento nas divergências</p>
             </div>
-        </Item>
-      </Carousel>
+        </div>
     </div>
   )
 };
 
-export default CarouselItem;
+export default VerticalCharts;

@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar2 from "../Navbarv2";
-import ChartPAtivas from "../Charts/ChartPAtivas";
-import ChartEQuestoes from "../Charts/ChartEQuestoes";
-import ChartEDebates from "../Charts/ChartEDebates";
-import ChartEDiver from "../Charts/ChartEDiver";
+
 import Chart from "../HorizontalCharts/Chart";
 import Legend from '../HorizontalCharts/legend';
 import Notes from '../Notes/Index';
@@ -11,10 +8,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
 import { useHistory } from "react-router-dom";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
-import { Select } from '@chakra-ui/react'
+import { Select, Box } from '@chakra-ui/react'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import "./index.scss";
 import CarouselItem from './Carousel';
+import VerticalCharts from './VerticalCharts';
+import WindowSize from "../Projetos/WindowSize";
 
 function Comparacao() {
 
@@ -104,57 +103,17 @@ function Comparacao() {
                             </div>
                         </div>
                 </div>
-                <div div className="compProj">
-                    <h3 className="titleComp">Comparativo por índice dos projetos</h3>
-                    <div className="charts">
-                        <CarouselItem><p>dddd</p><p>dasdasd</p></CarouselItem>
-                        <div className="chartsContent">
-                             <ChartPAtivas props={journeysList.map(journey => journey.people_active_count)}/>
-                             <div className="iconAndText">
-                                <img src="group.svg" className="iconComp"/>
-                                <p>Pessoas ativas na jornada</p>
-                             </div>
-                        </div>
-                        <div className="chartsContent">
-                            <ChartEDebates props={journeysList.map(journey => parseFloat(
-                                (journey.agreements_comments_count+journey.reply_comments_count)
-                                /
-                                ((journey.parent_comments_count*journey.people_active_count)/2)*100).toFixed(2)
-                            )} />
-                            <div className="iconAndText">
-                                <img src="squareChat.svg" className="iconComp"/>
-                                <p>Engajamento nos debates</p>
-                            </div>
-                        </div>
-                        <div className="chartsContent">
-                            <ChartEQuestoes props={journeysList.map(journey => parseFloat(
-                                journey.parent_comments_count
-                                /
-                                (journey.question_count*journey.people_active_count)*100)
-                                .toFixed(2)
-                                )}/>
-                            <div className="iconAndText">
-                                <img src="circledQuestion.svg" className="iconComp"/>
-                                <p>Engajamento nas questões</p>
-                            </div>
-                        </div>
-                        <div className="chartsContent">
-                            <ChartEDiver props={journeysList.map(journey => parseFloat( 
-                                                    (journey.parent_comments_count
-                                                    /
-                                                    (journey.question_count*journey.people_active_count))
-                                                    +
-                                                    (((journey.agreements_comments_count+journey.reply_comments_count)
-                                                    /
-                                                    ((journey.parent_comments_count*journey.people_active_count)/2))/2)*100).toFixed(2))
-                                                }/>
-                            <div className="iconAndText">
-                                <img src="chatBubbles.svg" className="iconComp"/>
-                                <p>Engajamento nas divergências</p>
-                            </div>
-                        </div>
+                {!WindowSize(700) ? (
+                    <div div className="compProj">
+                        <h3 className="titleComp">Comparativo por índice dos projetos</h3>
+                        <CarouselItem journeyArr={journeysList}/>  
                     </div>
-                </div>
+                ) : (
+                    <div div className="compProj">
+                        <h3 className="titleComp">Comparativo por índice dos projetos</h3>
+                        <VerticalCharts journeyArr={journeysList}/>
+                    </div>
+                )}
             </div>
             <div className="comp2">
                 <Notes selectedProj={listSelectedProject}/>

@@ -234,3 +234,13 @@ section.css-hxtskf {
     }
     
 }
+
+@media screen and (max-width: 480px) {
+    .notesWrapper {
+        height: 320px;
+    }
+
+    .flex-cards {
+        height: 484px;
+    }
+}

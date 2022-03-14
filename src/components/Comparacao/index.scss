@@ -73,7 +73,7 @@
     display:flex;
     flex-direction:column;
     width: 100%;
-    height: 1000px;
+    // height: 1000px;
 
     .wrapperProj{
         margin-top: 2.5%;
@@ -190,6 +190,10 @@
             flex: 4;
             height: 100% !important;
             width: 70% !important;
+
+            .css-42b2qy  {
+                width: 450px;
+            }
         }
 
         .wrapperProj {
@@ -210,7 +214,7 @@
         }
 
         .compProj {
-            // width: 50% !important;
+            margin-left: 10vw !important;
             .charts {
                 flex: 6;
                 justify-content: flex-start;
@@ -251,10 +255,71 @@
 
     .wrapper {
         justify-content: center;
-        margin-top: 46vh;
+        margin-top: 7vh;
+        
+        .wrapperProj {
+            width: 300px !important;
+     
+            .listaProjetos2 {
+                margin-left: 15px;
+            }
+        }
+
+        .compProj {
+            display: flex;
+            width: 80% !important;
+
+            .charts {
+                align-self: center;
+            }
+        }
+
+        .comp2 {
+            flex-direction: column-reverse;
+
+            .balanceProj {
+                margin-left: 4vw;
+            }
+
+            .btnPng {
+                // margin-left: 8vw;
+                width: 150px;
+                height: 35px;
+                position: absolute;
+                top: 194%;
+                left: 20%;
+            }
+
+            .notesWrapper {
+                margin-bottom: 50px;
+                margin-left: 8vw;
+                margin: 8vw auto 10vw 8vw;
+
+                .save_notes {
+                    width: 150px;
+                }
+            }
+        }
     }
 
-    .wrapperProj {
-        width: 300px !important;
+
+}
+
+@media screen and (max-width: 550px) { 
+
+
+    .wrapper {
+        margin-top: 12vh;
+    }
+
+    .jornadas {
+        .css-42b2qy {
+            width: 100% !important;
+        }
+    }
+
+    .btnPng {
+        top: 208% !important;
+        left: -24.5% !important;
     }
 }

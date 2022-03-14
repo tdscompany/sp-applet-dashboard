@@ -13,7 +13,7 @@ import {
 import { ExpandIcon } from '../CreateIcon/CreateIcon';
 import { CopyIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons'
 import CustomModal from './CustomModal';
-
+import WindowSize from '../Projetos/WindowSize'
 import {getDatabaseData, getDatabaseUsers, getDatabaseNotes, writeFirstUserNote, pushDataToExistingComparison, pushDataToNewComparison } from './DatabaseConnection';
 import { getUserComparisons, getComparisonsMatch } from './Comparisons';
 import './index.scss';
@@ -24,6 +24,7 @@ const Notes = ({ selectedProj }) => {
     const [comparisonMatch, setComparisonMatch] = React.useState([]);
     const [existingNotes, setExistingNotes] = React.useState([]);
     const [noteId, setNoteId] = React.useState(0);
+    const [scrollBehavior, setScrollBehavior] = React.useState('inside')
 
     const inputEl = React.useRef();
 
@@ -65,6 +66,13 @@ const Notes = ({ selectedProj }) => {
 
   return (
     <div className="notesWrapper">
+        {/* <RadioGroup value={scrollBehavior} onChange={setScrollBehavior}>
+            <Stack direction='row'>
+                <Radio value='inside'>inside</Radio>
+                <Radio value='outside'>outside</Radio>
+            </Stack>
+        </RadioGroup> */}
+
         <h2>Notas</h2>
             {existingNotes.length > 0 
             ? 
@@ -148,7 +156,7 @@ const Notes = ({ selectedProj }) => {
                 {existingNotes.length > 0 ? <p key={1}>{existingNotes[noteId].note}</p> : '' }
             </CustomModal>
         </Modal>
-        <Modal isOpen={isAllNoteModalOpen} onClose={onAllNoteModalClose}  isCentered={true} className='note-modal'>
+        <Modal isOpen={isAllNoteModalOpen} onClose={onAllNoteModalClose}  isCentered={true} className='note-modal' scrollBehavior='inside' size='5xl'>
             <ModalOverlay
                 bg='blackAlpha.300'
                 backdropFilter='blur(10px)'

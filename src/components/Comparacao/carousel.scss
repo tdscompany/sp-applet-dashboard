@@ -1,0 +1,37 @@
+.rec-carousel-wrapper {
+    display: flex;
+    justify-content: center;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(84, 81, 81, 0.16);
+    border-radius: 10px;
+    // width: auto;
+    // height: inherit;
+
+    .rec-arrow-right, .rec-arrow-left {
+        background: none;
+        box-shadow: none;
+        
+        &:hover {
+            color: #D70858 !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+    }
+}
+
+.rec-dot {
+    visibility: hidden;
+}
+
+@media screen and (max-width: 700px) {
+    .charts {
+        width: 60% !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .charts {
+        width: 90% !important;
+    }
+}

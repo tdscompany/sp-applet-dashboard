@@ -163,6 +163,13 @@
 }
 
 @media screen and (min-width: 800px) and (max-width: 1240px) {
+    .resumoJornada {
+
+        svg {
+            margin: auto 10px;
+        }
+    }
+
     .bICText {
         width: auto;
     }
@@ -202,10 +209,10 @@
                 margin-bottom: 0;
 
                 .person-container {
-                    width: 400px;
+                    width: 270px;
 
                     .person-icon {
-                        width: 6vw;
+                        width: 8vw;
                     }
 
                     .person-txt-container {
@@ -303,10 +310,15 @@
 
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 420px) {
+    .mainWrapper {
+        margin-top: 85px;
+    }
+
     .textTitle {
         margin-bottom: 9px !important;
     }
+
     .resumoJornada {
         background-color: transparent !important;
         
@@ -345,13 +357,18 @@
     .dataWrapper {
         margin: 0 !important;
 
+        .rightData {
+            margin-top: 60px;
+        }
+
         .legendWrapper2 {
             flex-direction: column;
         }
     }
 
     .btnProj {
-        margin-top: 77vh;
-        width: 30vw;
+        margin-top: 70vh;
+        margin-left: 220px;
+        width: 35vw;
     }
 }
