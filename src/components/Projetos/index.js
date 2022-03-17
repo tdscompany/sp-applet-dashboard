@@ -17,6 +17,7 @@ import { ReactComponent as ImageProject } from '../../assets/imgProject.svg'
 import printJS from "print-js";
 import "./index.scss";
 import WindowSize from "./WindowSize";
+import IndexTable from "./IndexTable";
 
 function Projetos() {
 
@@ -43,10 +44,11 @@ function Projetos() {
     useEffect(() => {
         fetchMapById().then((response) => {
           setProject({...response});
+          console.log(response)
           if (response && projectStatistics !== '') {
-              getAllDivergencePointsByMapId().then((response) => {
-            console.log("Retorno getAllDivergencePointsByMapId" , response)
-            });
+            //   getAllDivergencePointsByMapId().then((response) => {
+            // console.log("Retorno getAllDivergencePointsByMapId" , response)
+            // });
 
             fetchMapStatistics().then((response) => setProjectStatistics({...response}))
             }
@@ -128,8 +130,6 @@ function Projetos() {
                 :
                     (<div className="rightBar">
                         <PeopleContainer props={projectUsers}/>
-                        <h3 className="partTitle">Participantes mais influentes</h3>
-                        <MostInfluent />
                         <div className="bestInteractionContainer">
                             <Comment />
                             
@@ -141,6 +141,7 @@ function Projetos() {
                 }
             </div>
             {!WindowSize(800) ? <button className="btnProj" onClick={printPage}>Baixar relatorio</button> : ''} 
+            <IndexTable proj={project} projStats={projectStatistics}/>
         </div>
             
        

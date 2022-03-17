@@ -150,8 +150,8 @@ export const getCommentsGroupedByQuestionReport = async (id) => {
 
 //O Id abaixo /projects/v1/map/ >> 61a135358d09f1002bfaa2f4 <</divergence-point
 //veio da requisição fetchMapById, fica localizado em maps[indice].id
-export const getAllDivergencePointsByMapId = async () => {
-  const {data} = await api(`/projects/v1/map/61a135358d09f1002bfaa2f4/divergence-point`,
+export const getAllDivergencePointsByMapId = async (mapId) => {
+  const {data} = await api(`/projects/v1/map/${mapId}/divergence-point`,
   {
     method: "GET", 
     headers: {

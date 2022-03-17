@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Input ,InputGroup, InputRightElement } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
-import People from './People.jsx'
+import MostInfluent from '../MostInfluent/MostInfluent'
 import { fetchProjectById } from "../../services/requestFunctions";
 
 import "./PeopleContainer.css";
+
 
 const PeopleContainer = () => {
 
@@ -30,7 +31,7 @@ const PeopleContainer = () => {
             }
         })
     }, []);
-
+    console.log(people)
 
     const inputHandler = (e) => {
         var lowerCase = e.target.value.toLowerCase();
@@ -63,7 +64,7 @@ const PeopleContainer = () => {
             </div>
             <p className='members-length'>{people.length} membros</p>
             <div className="PeopleListBox">
-                <People people={ filteredPeopleList || people}/>
+                <MostInfluent filList={filteredPeopleList}/>
             </div>
         </div>
      );

@@ -1,9 +1,10 @@
 import React from 'react';
 import { fetchUserInteraction } from "../../services/requestFunctions";
+import Person from '../PeopleList/Person.jsx'
 
 import './MostInfluent.css'
 
-const MostInfluent = () => {
+const MostInfluent = ({filList}) => {
     const [users, setUsers] = React.useState([]);
     const [usersMean, setUsersMean] = React.useState([]);
     const [mostInfluentUsers, setMostInfluentUsers] = React.useState([]);
@@ -14,8 +15,7 @@ const MostInfluent = () => {
     React.useEffect(() => {
         fetchUserInteraction()
             .then( data => {
-                console.log(data)
-                setUsers(data)
+                setUsers(data);
             });
     }, []);
                 
@@ -62,35 +62,16 @@ const MostInfluent = () => {
             return uAnsweredQuestions
         }, 0);
         setTotalAnsweredQuestions(tAnsweredQuestions);
-        console.log(totalAnsweredQuestions)
     };
 
     const getMean = (partial, total) => (100 * partial) / total;
 
     return ( 
-        <div className="theBestWrapper">
-            <div className="theBest">
-                <p>1º</p>
-                <div className="ball"></div>
-                <div className="person-txt-container">
-                    <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[0]?.name : ''}</p>
-                </div>
-            </div>
-            <div className="theBest">
-                <p>2º</p>
-                <div className="ball"></div>
-                    <div className="person-txt-container">
-                        <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[1]?.name : ''}</p>
-                    </div>
-                </div>
-                <div className="theBest">
-                    <p>3º</p>
-                    <div className="ball"></div>
-                <div className="person-txt-container">
-                <p>{ mostInfluentUsers.length > 0 ? mostInfluentUsers[2]?.name : ''}</p>
-            </div>
-            </div>
-        </div>
+        <>
+            {(filList.length === mostInfluentUsers.length ? mostInfluentUsers : filList).map((person, index) => (
+            <Person key={person.id} index={index + 1} person={person} />
+            ))}
+        </>
     );
 }
  

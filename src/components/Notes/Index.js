@@ -13,18 +13,15 @@ import {
 import { ExpandIcon } from '../CreateIcon/CreateIcon';
 import { CopyIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons'
 import CustomModal from './CustomModal';
-import WindowSize from '../Projetos/WindowSize'
-import {getDatabaseData, getDatabaseUsers, getDatabaseNotes, writeFirstUserNote, pushDataToExistingComparison, pushDataToNewComparison } from './DatabaseConnection';
+import {getDatabaseNoteData, getDatabaseUsers, getDatabaseNotes, writeFirstUserNote, pushDataToExistingComparison, pushDataToNewComparison } from '../../services/DatabaseConnection';
 import { getUserComparisons, getComparisonsMatch } from './Comparisons';
 import './index.scss';
-
 const Notes = ({ selectedProj }) => {
 
     const [noteInput, setNoteInput] = React.useState('');
     const [comparisonMatch, setComparisonMatch] = React.useState([]);
     const [existingNotes, setExistingNotes] = React.useState([]);
     const [noteId, setNoteId] = React.useState(0);
-    const [scrollBehavior, setScrollBehavior] = React.useState('inside')
 
     const inputEl = React.useRef();
 
@@ -33,7 +30,7 @@ const Notes = ({ selectedProj }) => {
     const { isOpen: isAllNoteModalOpen, onOpen: onAllNoteModalOpen, onClose: onAllNoteModalClose } = useDisclosure();
     
     React.useEffect(() => {
-        const databaseData  = getDatabaseData();
+        const databaseData  = getDatabaseNoteData();
         const usersDb = getDatabaseUsers(databaseData);
         const userComparisons = getUserComparisons(usersDb, databaseData);
         setComparisonMatch(getComparisonsMatch(userComparisons, selectedProj));
@@ -44,7 +41,7 @@ const Notes = ({ selectedProj }) => {
     }, [comparisonMatch]);
 
     const handleSave = () => {
-        if(!getDatabaseData()) {
+        if(!getDatabaseNoteData()) {
             writeFirstUserNote(noteInput, selectedProj);
         } else if (comparisonMatch.length > 0){
             pushDataToExistingComparison(noteInput, comparisonMatch);
