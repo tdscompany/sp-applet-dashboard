@@ -12,25 +12,6 @@ const firebaseConfig = {
 //   measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
-// export function writeProjectData(projectId, title, spotifyId) {
-//   const db = getDatabase();
-//   set(ref(db, 'projects/' + spotifyId), {
-//     title: title,
-//     projectId: projectId,
-//   });
-// };
-
-// export function readProjectData(spotifyId) {
-//   const db = getDatabase();
-//   const readProjectRef = ref(db, 'projects/' + spotifyId);
-//   onValue(readProjectRef, (snapshot) => {
-//     const data = snapshot.val();
-//     console.log(data)
-//     if (data === null) return false;
-//   })
-//   return true;
-// };
-
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

@@ -1,7 +1,4 @@
-import {
-  useContext,
-  useState
-} from "react";
+import { useContext, useState } from "react";
 import {
   Box,
   Image,
@@ -10,18 +7,11 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import {
-  useForm
-} from "react-hook-form";
-import {
-  useHistory
-} from "react-router-dom";
-import {
-  AuthContext
-} from "../providers/auth";
-import {
-  authenticate
-} from "../../services/requestFunctions";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../providers/auth";
+import { authenticate } from "../../services/requestFunctions";
+import { createUserFirebase, signInFirebase } from "../../services/DatabaseConnection";
 
 
 
@@ -42,8 +32,10 @@ const Login = () => {
 
     const handleLogin = (values) => {
       authenticate(values)
-        .then((response) => {
-          if (response.data) {
+      .then((response) => {
+        if (response.data) {
+            signInFirebase(values.email, values.password);
+            createUserFirebase(values.email, values.password);
             auth.setApiToken(response.data.access_token);
             localStorage.setItem("token", response.data.access_token);
             auth.setIsAuthenticated(!auth.isAuthenticated);

@@ -1,9 +1,42 @@
 import { getDatabase, ref, set, onValue, push } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from './firebase';
 
 const userId = localStorage.getItem("userId");
 const projId = localStorage.getItem("id");
 const date = new Date;
+
+// ------- authentication
+
+export const createUserFirebase = (email, password) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+  });
+};
+
+export const signInFirebase = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode)
+        });
+}
 
 //-------- notes
 
@@ -107,4 +140,4 @@ export const getDatabaseProjIndex = (comparisonMatch, setExistingNotes) => {
     } else {
         setExistingNotes([]);
     }
-} 
+}
