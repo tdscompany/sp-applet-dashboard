@@ -68,7 +68,7 @@ const MostInfluent = ({filList}) => {
 
     return ( 
         <>
-            {(filList.length === mostInfluentUsers.length ? mostInfluentUsers : filList).map((person, index) => (
+            {(filList?.length === mostInfluentUsers?.length ? mostInfluentUsers : filList).map((person, index) => (
             <Person key={person.id} index={index + 1} person={person} />
             ))}
         </>
