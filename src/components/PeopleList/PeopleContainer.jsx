@@ -3,6 +3,7 @@ import { Input ,InputGroup, InputRightElement } from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 import MostInfluent from '../MostInfluent/MostInfluent'
 import { fetchProjectById } from "../../services/requestFunctions";
+import Person from './Person';
 
 import "./PeopleContainer.css";
 
@@ -10,18 +11,7 @@ import "./PeopleContainer.css";
 const PeopleContainer = () => {
 
     const [searchValue, setSearchValue] = useState('');
-    const [people, setPeople] = useState([
-        {
-            id: "1",
-            name: "Rafael Varela",
-            position: "Mentor",
-        },
-        {
-            id: "2",
-            name: "é muito limpeza",
-            position: "Mentor",
-        }
-    ]);
+    const [people, setPeople] = useState([]);
 
     useEffect(() => {
         fetchProjectById().then((users) =>{
@@ -31,7 +21,6 @@ const PeopleContainer = () => {
             }
         })
     }, []);
-    console.log(people)
 
     const inputHandler = (e) => {
         var lowerCase = e.target.value.toLowerCase();
@@ -41,6 +30,7 @@ const PeopleContainer = () => {
     const filteredPeopleList = people.filter(el => {
         return el.name.toLowerCase().includes(searchValue);
     });
+    
     
 
     return ( 
@@ -64,7 +54,9 @@ const PeopleContainer = () => {
             </div>
             <p className='members-length'>{people.length} membros</p>
             <div className="PeopleListBox">
-                <MostInfluent filList={filteredPeopleList}/>
+                {searchValue ? filteredPeopleList.map((person, index) => (
+                <Person key={person.id} index={index + 1} person={person} />
+            )) : <MostInfluent/>}
             </div>
         </div>
      );

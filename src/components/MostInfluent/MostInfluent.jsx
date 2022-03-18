@@ -4,7 +4,7 @@ import Person from '../PeopleList/Person.jsx'
 
 import './MostInfluent.css'
 
-const MostInfluent = ({filList}) => {
+const MostInfluent = () => {
     const [users, setUsers] = React.useState([]);
     const [usersMean, setUsersMean] = React.useState([]);
     const [mostInfluentUsers, setMostInfluentUsers] = React.useState([]);
@@ -66,10 +66,11 @@ const MostInfluent = ({filList}) => {
 
     const getMean = (partial, total) => (100 * partial) / total;
 
+
     return ( 
         <>
-            {(filList?.length === mostInfluentUsers?.length ? mostInfluentUsers : filList).map((person, index) => (
-            <Person key={person.id} index={index + 1} person={person} />
+            { mostInfluentUsers.map((person, index) => (
+                <Person key={person.id} index={index + 1} person={person} />
             ))}
         </>
     );
