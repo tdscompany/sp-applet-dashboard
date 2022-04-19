@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchUserInteraction } from "../../services/requestFunctions";
 import Person from '../PeopleList/Person.jsx'
 
-import './MostInfluent.css'
+import './MostInfluent.scss'
 
 const MostInfluent = () => {
     const [users, setUsers] = React.useState([]);

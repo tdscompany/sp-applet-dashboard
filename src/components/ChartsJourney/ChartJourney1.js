@@ -3,6 +3,7 @@ import "./chartJourneyHorizontal.css";
 import Legend from './legendJourney.js';
 
 import "./ChartJourney1.css";
+import LineChart from "../Projetos/LineChart";
 
 
 const Progress = ({ done, classN }) => (
@@ -93,6 +94,7 @@ const ChartJourney1 = ({props , props2}) => {
                     <ProgressH classN='progress-doneH4' done={divergencesEngagements(props.parent_comments_count, props.question_count, props.people_active_count, props.agreements_comments_count ,props.reply_comments_count)}/>
                 </div>
                 <Legend />
+                <LineChart/>
             </div>
         </div>  
         )} </>    

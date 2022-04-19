@@ -1,0 +1,45 @@
+
+.theBestWrapper {
+    width: 20vw;  
+    margin-bottom: 50px;
+    
+}
+.theBest {
+    display:flex;
+    align-items: center;
+    justify-content: left;
+
+    background-color: #FAFAFA;
+    border-radius: 8px;
+
+    width: 20vw;
+    height: 45px;
+    margin: 10px 0;
+    padding-left: 24px;
+}
+
+p {
+    margin-right: 12px;
+}
+
+
+
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+        .theBest {
+            padding-left: 16px;
+            .ball {
+                display: none;
+            }
+            p {
+                margin-right: 4px;
+            }
+            
+        }
+}
+
+@media screen and (max-width: 800px) {
+    .theBest {
+        width: 52vw;
+    }
+}

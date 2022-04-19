@@ -45,9 +45,6 @@
             font-size: 14px;
         }
     }
-    
-    
-
 }
 
 
@@ -70,17 +67,11 @@
 }
 
 
-
-
-
-
 .titleP {
     font-weight: bold;
     font-size: 1rem;
     color: rgba(0, 0, 0, 0.36);
 }
-
-
 
 .introData {
     margin-top: 4vh;
@@ -160,6 +151,20 @@
 
     padding: 15px;
     width: 300px;
+}
+
+// INDEX
+
+.timeIndexes {
+    width: 70% !important;
+    height: auto !important; 
+    margin-top: 20px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.02);
+        transition: all .4s ease-in-out;    
+    }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1240px) {

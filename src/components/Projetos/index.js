@@ -18,6 +18,7 @@ import printJS from "print-js";
 import "./index.scss";
 import WindowSize from "./WindowSize";
 import IndexTable from "./IndexTable";
+import LineChart from "./LineChart";
 
 function Projetos() {
 
@@ -122,10 +123,11 @@ function Projetos() {
                     <div className="dataWrapper">
                         <div className="data">
                             <ChartJourney1 props={projectStatistics} props2={project}/>
+                            {/* <LineChart /> */}
                         </div>
-                    
                     </div>
                 </div>
+                
                 {!WindowSize(800) ? '' 
                 :
                     (<div className="rightBar">
@@ -142,6 +144,7 @@ function Projetos() {
             </div>
             {!WindowSize(800) ? <button className="btnProj" onClick={printPage}>Baixar relatorio</button> : ''} 
             <IndexTable proj={project} projStats={projectStatistics}/>
+            
         </div>
             
        

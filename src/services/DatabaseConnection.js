@@ -103,11 +103,11 @@ export const pushDataToNewComparison = (note, selectedProj) => {
 
 //------ index table
 
-export const getDatabaseIndexData = () => {
+export const getDatabaseIndexData = (projId) => {
     let dbData = {};
     const db = getDatabase(app);
     
-    const readIndexRef = ref(db, 'index/');
+    const readIndexRef = ref(db, `index/${projId}`);
     onValue(readIndexRef, (snapshot) => {
         const data = snapshot.val();
         dbData = {...data}
@@ -115,7 +115,7 @@ export const getDatabaseIndexData = () => {
     return dbData;
 }
 
-export const writeProjIndex = (date, aParticipants, qEngagements, debEngagements, divEngagements) => {
+export const writeProjIndex = (date, aParticipants, qEngagements, debEngagements, divEngagements, projId) => {
     const db = getDatabase(app);
     set(ref(db, `index/${projId}/${date}`), {
         activeParticipants: aParticipants,
@@ -141,3 +141,4 @@ export const getDatabaseProjIndex = (comparisonMatch, setExistingNotes) => {
         setExistingNotes([]);
     }
 }
+
