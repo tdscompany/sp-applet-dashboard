@@ -3,6 +3,7 @@ import { fetchMapStatisticsHome } from "../../services/requestFunctions";
 import {Link} from "react-router-dom";
 import { Select } from '@chakra-ui/react'
 import { AuthContext } from "../providers/auth";
+
 import JourneyDisplay from './JourneyDisplay';
 
 const ComparisonSelector = ({ projects }) => {
@@ -18,7 +19,6 @@ const ComparisonSelector = ({ projects }) => {
         fetchMapStatisticsHome(auth.apiToken, id2).then((response2) => setProjectStatistics2(response2));
     }
       
-
     const listaProjetosDropdown = projects.map( project =><option key={project.id} value={project.id}>{project.title}</option>);
           
   return (
@@ -47,6 +47,7 @@ const ComparisonSelector = ({ projects }) => {
                 <JourneyDisplay projectStatistics={projectStatistics2}/>
             </div>
         </div>
+        
     </div>
   )
 };

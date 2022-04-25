@@ -62,8 +62,8 @@ export const fetchUserInteraction = async () => {
   return data;
 };
 
-export const fetchMapById = async () => {
-  const {data} = await api("/projects/v1/project/"+localStorage.getItem('id'),
+export const fetchMapById = async (id) => {
+  const {data} = await api("/projects/v1/project/" + ( id || localStorage.getItem('id')),
   {
     method: "GET", 
     headers: {

@@ -4,6 +4,7 @@ import { fetchUserData, fetchUserProjects, fetchMapStatisticsHome } from "../../
 import Wellcome from "../Wellcome";
 import Navbar2 from "../Navbarv2";
 import JourneyPagesList from './JourneyPagesList';
+import IndexTable from "../Projetos/IndexTableData";
 
 import "./styles.scss";
 import JourneysCards from "./JourneysCards";
@@ -39,6 +40,7 @@ const Strateegia = () => {
       <div className="container2">
         <JourneyPagesList projects={projectsData}/>
         <ComparisonSelector projects={projectsData}/>
+        <IndexTable projects={projectsData}/>
       </div>
     </div>
   );

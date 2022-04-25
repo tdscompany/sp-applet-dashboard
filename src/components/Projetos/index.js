@@ -12,13 +12,11 @@ import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
 import MostInfluent from '../MostInfluent/MostInfluent';
 import Comment from '../Comment/Comment';
-import { fetchMapById, fetchMapStatistics, fetchProjectById, getAllDivergencePointsByMapId } from "../../services/requestFunctions";
+import { fetchMapById, fetchMapStatistics, fetchProjectById } from "../../services/requestFunctions";
 import { ReactComponent as ImageProject } from '../../assets/imgProject.svg'
 import printJS from "print-js";
 import "./index.scss";
 import WindowSize from "./WindowSize";
-import IndexTable from "./IndexTable";
-import LineChart from "./LineChart";
 
 function Projetos() {
 
@@ -37,19 +35,13 @@ function Projetos() {
     const [project, setProject] = useState({});
     const [projectStatistics, setProjectStatistics] = useState({});
     const [projectUsers, setProjectUsers] = useState({});
-    
-
 
     const newDate = new Date(project.created_at);
 
     useEffect(() => {
         fetchMapById().then((response) => {
           setProject({...response});
-          console.log(response)
           if (response && projectStatistics !== '') {
-            //   getAllDivergencePointsByMapId().then((response) => {
-            // console.log("Retorno getAllDivergencePointsByMapId" , response)
-            // });
 
             fetchMapStatistics().then((response) => setProjectStatistics({...response}))
             }
@@ -59,8 +51,6 @@ function Projetos() {
         fetchProjectById().then((response) => setProjectUsers({...response}));
 
     }, []);
-
-    // console.log(WindowSize(600));
 
     return (
         
@@ -143,7 +133,7 @@ function Projetos() {
                 }
             </div>
             {!WindowSize(800) ? <button className="btnProj" onClick={printPage}>Baixar relatorio</button> : ''} 
-            <IndexTable proj={project} projStats={projectStatistics}/>
+            {/* <IndexTable proj={project} projStats={projectStatistics}/> */}
             
         </div>
             
