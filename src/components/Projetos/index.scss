@@ -144,14 +144,25 @@
     width: 20vw;
 }
 
-
-.bICText {
+.bICBox {
     background-color: #FAFAFA;
     border-radius: 8px;
 
+}
+
+
+.bICText {
     padding: 15px;
     width: 300px;
 }
+
+.bICAuthor {
+    padding: 0 15px 15px 0;
+
+    text-align: end;
+    // width: 300px;
+}
+
 
 // INDEX
 

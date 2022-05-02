@@ -52,6 +52,7 @@ const Comment = () => {
     }, [commentsMean]);
 
     React.useEffect(() => {
+        console.log(mostInteractedComment)
     }, [mostInteractedComment]);
 
 
@@ -76,7 +77,10 @@ const Comment = () => {
   return (
     <div>
         <h3 className="bICTitle">Comentário com mais interações</h3>
-        <p className="bICText">{mostInteractedComment.length > 0 ? mostInteractedComment[0].text : 'Sem comentários'}</p>
+        <div className='bICBox'>
+            <p className="bICText">{mostInteractedComment.length > 0 ? '"' + mostInteractedComment[0].text + '"' : 'Sem comentários'}</p>
+            <p className="bICAuthor">{mostInteractedComment.length > 0 ? '-' + mostInteractedComment[0].author.name : ''}</p>
+        </div>
     </div>
   )
 };
