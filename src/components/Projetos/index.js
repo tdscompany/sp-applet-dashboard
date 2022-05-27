@@ -5,7 +5,7 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    Box
+    Spinner
   } from '@chakra-ui/react'
 import Navbar2 from "../Navbarv2";
 import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
@@ -112,7 +112,18 @@ function Projetos() {
                     </div>
                     <div className="dataWrapper">
                         <div className="data">
-                            <ChartJourney1 props={projectStatistics} props2={project}/>
+                            {ChartJourney1 ? 
+                                <ChartJourney1 props={projectStatistics} props2={project}/>
+                                
+                            : 
+                                <Spinner
+                                    thickness='4px'
+                                    speed='0.65s'
+                                    emptyColor='gray.200'
+                                    color='blue.500'
+                                    size='xl'
+                                /> 
+                            }
                             {/* <LineChart /> */}
                         </div>
                     </div>

@@ -51,9 +51,7 @@ const Comment = () => {
         setMostInteractedComment(commentsMean.sort((a, b) => b.mean_interaction - a.mean_interaction));
     }, [commentsMean]);
 
-    React.useEffect(() => {
-        console.log(mostInteractedComment)
-    }, [mostInteractedComment]);
+
 
 
     const getAllLikes = data => {

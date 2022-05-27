@@ -4,9 +4,14 @@ import Legend from './legendJourney.js';
 
 import "./ChartJourney1.css";
 import LineChart from "../Projetos/LineChart";
+import {
+    Box,
+    Spinner
+} from '@chakra-ui/react'
 
 
 const Progress = ({ done, classN }) => (
+
     <div className='progress'>
         <div className="progress-bar">
             <div className={classN} style={{
@@ -50,11 +55,25 @@ export const divergencesEngagements = (parentsComments, questionCount, activePeo
 };
 
 const ChartJourney1 = ({props , props2}) => {
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+       if(Object.entries(props).length > 0) setLoading(false);
+    }, [props])
    
     return (
         <>
-        {/* AQUI EMBAIXO EU TÔ FAZENDO UMA RENDERIZAÇÃO CONSIDIONAL CHECANDO O RETORNO DE PROPS É DIFERENTE
-        DE NULO */}
+        {loading ? 
+        <Box display='flex' h='200px' justifyContent='center' alignItems='center'>
+            <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+            /> 
+        </Box>
+        : ''}
         {props2.users && props.people_active_count && (
         <div className="chartJWrapper">
             <div className="leftData"> 
