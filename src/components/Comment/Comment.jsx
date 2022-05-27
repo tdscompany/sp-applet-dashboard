@@ -9,6 +9,8 @@ const Comment = () => {
     const [commentsMean, setCommentsMean] = React.useState([]);
     const [mostInteractedComment, setMostInteractedComment] = React.useState([]);
 
+    
+
 
     React.useEffect(() => {
         getDivergencePointEngagement()
@@ -32,10 +34,17 @@ const Comment = () => {
     }, [commentsByQuestions]);
 
     React.useEffect(() => {
-
         getAllLikes(comments);
         getAllReplies(comments);
-        
+
+        const sortedComments = comments.sort((x, y) => {
+            const a = new Date(x.updated_at);
+            const b = new Date(y.updated_at);
+
+            return b - a;
+        })
+        localStorage.setItem('lastUpdate', sortedComments[0]?.updated_at)
+
         const commentsMeanInteractions =  comments.map(comment => {
             const agreementsPercentage = getMean(comment.agreements.length, totalLikes);
             const repliesPercentage = getMean(comment.replies.length, totalReplies);
@@ -51,7 +60,7 @@ const Comment = () => {
         setMostInteractedComment(commentsMean.sort((a, b) => b.mean_interaction - a.mean_interaction));
     }, [commentsMean]);
 
-
+    
 
 
     const getAllLikes = data => {

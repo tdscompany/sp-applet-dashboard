@@ -6,14 +6,17 @@ import {
     AccordionPanel,
     AccordionIcon,
     Spinner
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
+
 import Navbar2 from "../Navbarv2";
 import ChartJourney1 from '../ChartsJourney/ChartJourney1.js';
 import PeopleContainer from '../PeopleList/PeopleContainer.jsx';
 import MostInfluent from '../MostInfluent/MostInfluent';
 import Comment from '../Comment/Comment';
+
 import { fetchMapById, fetchMapStatistics, fetchProjectById } from "../../services/requestFunctions";
 import { ReactComponent as ImageProject } from '../../assets/imgProject.svg'
+
 import printJS from "print-js";
 import "./index.scss";
 import WindowSize from "./WindowSize";
@@ -35,6 +38,9 @@ function Projetos() {
     const [project, setProject] = useState({});
     const [projectStatistics, setProjectStatistics] = useState({});
     const [projectUsers, setProjectUsers] = useState({});
+    const [lastUpdate, setLastUpdate] = React.useState();
+    const [lastActivity, setLastActivity] = React.useState(0);
+    
 
     const newDate = new Date(project.created_at);
 
@@ -52,6 +58,23 @@ function Projetos() {
 
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLastUpdate(localStorage.getItem('lastUpdate'))
+        }, 2000);
+    }, [])
+
+    useEffect(() => {
+        const lastDate = new Date (lastUpdate)
+        // console.log(last)
+        const today = new Date();
+
+        const diffTime = Math.abs(today - lastDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        setLastActivity(diffDays)
+        
+    }, [lastUpdate]);
+
     return (
         
         <div className="desenvolvedores">
@@ -66,7 +89,7 @@ function Projetos() {
                         <div className="infoP">
                             <h1>{project.title}</h1>
                             <p className="titleP">criada em {newDate.toLocaleDateString()}</p>
-                            <p className="titleP">última atividade 2 dias atrás</p>
+                            <p className="titleP">última atividade {lastUpdate ? lastActivity : '...'} {lastActivity === 1 ? 'dia' : 'dias'} atrás</p>
                         </div>
                     </div>
                     <div className="introData">
