@@ -2,10 +2,6 @@
   "name": "trending",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "6.11.1",
-    "npm": "3.10.10"
-  },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.6.6",
