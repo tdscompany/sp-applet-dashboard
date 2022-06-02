@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "6.11.1",
-    "npm": "8.1.2"
+    "npm": "3.10.10"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
