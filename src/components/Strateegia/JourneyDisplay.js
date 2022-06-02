@@ -5,7 +5,7 @@ const JourneyDisplay = ({ projectStatistics, index }) => {
   return (
         <div className="comp1">
             <div className="horizontalDisplay">
-                <h2 className="compTitle">{projectStatistics.title?.slice(0, 15) + '...' || `Jornada ${index}`}</h2>
+                <h2 className="compTitle">{projectStatistics && projectStatistics.title?.slice(0, 15) + '...' || `Jornada ${index}`}</h2>
                 <div className="element">
                     <img src="group.svg" className="iconComp" alt="icon"/>
                     <h3 className="h3Comp">{projectStatistics.people_active_count || "0"}</h3>
