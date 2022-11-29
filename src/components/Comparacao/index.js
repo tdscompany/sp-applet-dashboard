@@ -190,12 +190,10 @@ const calculateEngAtDiver = (
     people_active_count,
     question_count) => {
         
-   return  parseFloat( 
-    (parent_comments_count
-    /
-    (question_count*people_active_count))
-  +
-  (((agreements_comments_count+reply_comments_count)
-  /
-  ((parent_comments_count*people_active_count)/2))/2)*100).toFixed(2) 
+   return  parseFloat(
+    ((parent_comments_count / (question_count * people_active_count) * 100
+    +
+    ((agreements_comments_count + reply_comments_count) 
+    / 
+    ((parent_comments_count * people_active_count) / 2) * 100)) / 2)).toFixed(2)
 }

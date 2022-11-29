@@ -29,14 +29,13 @@ const JourneyDisplay = ({ projectStatistics, index }) => {
                 <div className="element">
                     <img src="squareChat.svg" className="iconComp" alt="icon"/>
                     <h3 className="h3Comp">{ projectStatistics.parent_comments_count?
-                    parseFloat( 
-                        (projectStatistics.parent_comments_count
-                        /
-                        (projectStatistics.question_count*projectStatistics.people_active_count))
+                    parseFloat(
+                        ((projectStatistics.parent_comments_count / (projectStatistics.question_count * projectStatistics.people_active_count) * 100
                         +
-                        (((projectStatistics.agreements_comments_count+projectStatistics.reply_comments_count)
-                        /
-                        ((projectStatistics.parent_comments_count*projectStatistics.people_active_count)/2))/2)*100).toFixed(2) :"0"}%
+                        ((projectStatistics.agreements_comments_count + projectStatistics.reply_comments_count) 
+                        / 
+                        ((projectStatistics.parent_comments_count * projectStatistics.people_active_count) / 2) * 100)) / 2)).toFixed(2)
+                        :"0"}%
                     </h3>
                 </div>
                 <div className="elementP">
@@ -48,7 +47,8 @@ const JourneyDisplay = ({ projectStatistics, index }) => {
                     parseFloat(
                         (projectStatistics.agreements_comments_count+projectStatistics.reply_comments_count)
                         /
-                        ((projectStatistics.parent_comments_count*projectStatistics.people_active_count)/2)*100).toFixed(2):"0"
+                        ((projectStatistics.parent_comments_count*projectStatistics.people_active_count)/2)*100).toFixed(2)
+                        :"0"
                         }%
                     </h3>
                 </div>

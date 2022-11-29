@@ -46,12 +46,21 @@ export const debatesEngagements = (agreementsComments, replyComments, parentsCom
         ((parentsComments * activePeople) / 2) * 100))
 };
 export const divergencesEngagements = (parentsComments, questionCount, activePeople, agreementsComments, replyComments) => {
-    return parseFloat(Math.round
-        ((parentsComments / (questionCount * activePeople))
+    return parseFloat(Math.round(
+        parentsComments / (questionCount * activePeople) * 100
         +
-        (((agreementsComments + replyComments)
-        /
-        ((parentsComments * activePeople) / 2)) / 2) * 100))
+        ((agreementsComments + replyComments) 
+        / 
+        ((parentsComments * activePeople) / 2) * 100)) / 2)
+};
+
+export const divEngagements = (parentsComments, questionCount, activePeople, agreementsComments, replyComments) => {
+    const questions = questionsEngagements(parentsComments, questionCount, activePeople);
+    console.log("🚀 ~ file: ChartJourney1.js ~ line 59 ~ divEngagements ~ questions", questions)
+    const debates = debatesEngagements(agreementsComments, replyComments, parentsComments, activePeople);
+    console.log("🚀 ~ file: ChartJourney1.js ~ line 61 ~ divEngagements ~ debates", debates)
+
+    return (questions + debates) / 2;
 };
 
 const ChartJourney1 = ({props , props2}) => {

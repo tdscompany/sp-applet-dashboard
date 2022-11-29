@@ -38,15 +38,16 @@ const VerticalCharts = ({ journeyArr }) => {
             </div>
         </div>
         <div className="chartsContent">
-            <ChartEDiver props={journeyArr.map(journey => parseFloat( 
-                (journey.parent_comments_count
-                /
-                (journey.question_count*journey.people_active_count))
+            <ChartEDiver props={journeyArr.map(journey => parseFloat(
+                (journey.parent_comments_count / (journey.question_count * journey.people_active_count) * 100
                 +
-                (((journey.agreements_comments_count+journey.reply_comments_count)
-                /
-                ((journey.parent_comments_count*journey.people_active_count)/2))/2)*100).toFixed(2))
-            }/>
+                ((journey.agreements_comments_count + journey.reply_comments_count) 
+                / 
+                ((journey.parent_comments_count * journey.people_active_count) / 2) * 100)) / 2).toFixed(2))}
+                />
+
+
+
             <div className="iconAndText">
                 <img src="chatBubbles.svg" className="iconComp"/>
                 <p>Engajamento nas divergências</p>
