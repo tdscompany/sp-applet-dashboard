@@ -34,7 +34,8 @@ const JourneyDisplay = ({ projectStatistics, index }) => {
                         +
                         ((projectStatistics.agreements_comments_count + projectStatistics.reply_comments_count) 
                         / 
-                        ((projectStatistics.parent_comments_count * projectStatistics.people_active_count) / 2) * 100)) / 2)).toFixed(2)
+                        ((projectStatistics.parent_comments_count * projectStatistics.people_active_count) / 2) * 100)) / 2))
+                        .toFixed(2)
                         :"0"}%
                     </h3>
                 </div>
