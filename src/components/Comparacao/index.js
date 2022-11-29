@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
 import { useHistory } from "react-router-dom";
 import {fetchUserProjects, fetchMapStatisticsComp} from "../../services/requestFunctions";
-import { Select, Box } from '@chakra-ui/react'
+import { Select } from '@chakra-ui/react'
 import { SmallCloseIcon } from '@chakra-ui/icons'
 import "./index.scss";
 import CarouselItem from './Carousel';

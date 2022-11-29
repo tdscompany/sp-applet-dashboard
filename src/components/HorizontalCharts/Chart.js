@@ -1,6 +1,6 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
-
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "./hChart.css";
 
 const Chart = ({pac, end, enq, endi, title}) => {
@@ -38,7 +38,15 @@ const Chart = ({pac, end, enq, endi, title}) => {
                      
                     legend:{
                         display:false
-                    }
+                    },
+                    datalabels: {
+                        display: true,
+                        color: "black",
+                        anchor: "end",
+                        offset: "-40",
+                        align: "end",
+                        clamp: true,
+                      }
                 },
                 scales: {
                     y: {
@@ -68,7 +76,7 @@ const Chart = ({pac, end, enq, endi, title}) => {
 
             height={60}
             width={220}
-
+            plugins={[ChartDataLabels]}
             />
             </div>
     )

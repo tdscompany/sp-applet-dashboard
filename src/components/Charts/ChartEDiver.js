@@ -1,5 +1,6 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "./chart.css";
 
 const ChartEDiver = ({props}) => {
@@ -27,8 +28,18 @@ const ChartEDiver = ({props}) => {
             options={{
                 plugins:{
                     legend:{
-                        display:false
-                    }
+                        display: false
+                    },
+                    datalabels: {
+                        display: true,
+                        color: "white",
+                        anchor: "end",
+                        offset: "-40",
+                        align: "end",
+                        clamp: true,
+                        rotation: 90
+                        
+                      }
                 },
                 scales: {
                     y: {
@@ -54,7 +65,8 @@ const ChartEDiver = ({props}) => {
 
             height={150}
             width={100}
-
+            plugins={[ChartDataLabels]}
+            padding={2}
             />
             </div>
     )
